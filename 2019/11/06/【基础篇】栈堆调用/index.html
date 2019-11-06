@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="javascript,">
+  <meta name="keywords" content="栈堆,">
 
 
 
@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="前言图片上传以及文件上传经常要实时显示百分比，HTML5的Progress Events提供的新特性基本够用。 HTML5 Progress Events简介 Progress Events定义了与客户端服务器通信有关的事件。这些事件最早其实只针对XHR操作，但目前也被其它API借鉴。有以下6个进度事件。   loadstart：在接收到相应数据的第一个字节时触发。 progress：在接收相应期">
-<meta name="keywords" content="javascript">
+<meta name="description" content="执行栈执行栈，也叫调用栈，具有 LIFO（后进先出）结构，用于存储在代码执行期间创建的所有执行上下文。 变量环境 在 ES6 中，词法 环境和 变量 环境的区别在于前者用于存储函数声明和变量（ let 和 const ）绑定，而后者仅用于存储变量（ var ）绑定。  变量提升的原因：在创建阶段，函数声明存储在环境中，而变量会被设置为undefined(在var的情况下) 或保持未初始化（在let">
+<meta name="keywords" content="栈堆">
 <meta property="og:type" content="article">
-<meta property="og:title" content="获取图片上传进度">
-<meta property="og:url" content="http://yoursite.com/2018/12/21/获取图片上传进度/index.html">
+<meta property="og:title" content="【基础篇】栈堆调用">
+<meta property="og:url" content="http://yoursite.com/2019/11/06/【基础篇】栈堆调用/index.html">
 <meta property="og:site_name" content="danarrr">
-<meta property="og:description" content="前言图片上传以及文件上传经常要实时显示百分比，HTML5的Progress Events提供的新特性基本够用。 HTML5 Progress Events简介 Progress Events定义了与客户端服务器通信有关的事件。这些事件最早其实只针对XHR操作，但目前也被其它API借鉴。有以下6个进度事件。   loadstart：在接收到相应数据的第一个字节时触发。 progress：在接收相应期">
+<meta property="og:description" content="执行栈执行栈，也叫调用栈，具有 LIFO（后进先出）结构，用于存储在代码执行期间创建的所有执行上下文。 变量环境 在 ES6 中，词法 环境和 变量 环境的区别在于前者用于存储函数声明和变量（ let 和 const ）绑定，而后者仅用于存储变量（ var ）绑定。  变量提升的原因：在创建阶段，函数声明存储在环境中，而变量会被设置为undefined(在var的情况下) 或保持未初始化（在let">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-21T05:58:02.084Z">
+<meta property="og:updated_time" content="2019-11-06T09:46:35.141Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="获取图片上传进度">
-<meta name="twitter:description" content="前言图片上传以及文件上传经常要实时显示百分比，HTML5的Progress Events提供的新特性基本够用。 HTML5 Progress Events简介 Progress Events定义了与客户端服务器通信有关的事件。这些事件最早其实只针对XHR操作，但目前也被其它API借鉴。有以下6个进度事件。   loadstart：在接收到相应数据的第一个字节时触发。 progress：在接收相应期">
+<meta name="twitter:title" content="【基础篇】栈堆调用">
+<meta name="twitter:description" content="执行栈执行栈，也叫调用栈，具有 LIFO（后进先出）结构，用于存储在代码执行期间创建的所有执行上下文。 变量环境 在 ES6 中，词法 环境和 变量 环境的区别在于前者用于存储函数声明和变量（ let 和 const ）绑定，而后者仅用于存储变量（ var ）绑定。  变量提升的原因：在创建阶段，函数声明存储在环境中，而变量会被设置为undefined(在var的情况下) 或保持未初始化（在let">
 
 
 
@@ -120,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/21/获取图片上传进度/">
+  <link rel="canonical" href="http://yoursite.com/2019/11/06/【基础篇】栈堆调用/">
 
 
 
 
 
-  <title>获取图片上传进度 | danarrr</title>
+  <title>【基础篇】栈堆调用 | danarrr</title>
   
 
 
@@ -253,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/获取图片上传进度/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/06/【基础篇】栈堆调用/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="danarrr">
@@ -270,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">获取图片上传进度</h1>
+          <h1 class="post-title" itemprop="name headline">【基础篇】栈堆调用</h1>
         
 
         <div class="post-meta">
@@ -282,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-12-21T10:23:05+08:00">
-                2018-12-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-06T14:22:22+08:00">
+                2019-11-06
               </time>
             
 
@@ -323,8 +323,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/12/21/获取图片上传进度/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/12/21/获取图片上传进度/" itemprop="commentsCount"></span>
+                <a href="/2019/11/06/【基础篇】栈堆调用/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/11/06/【基础篇】栈堆调用/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -332,7 +332,7 @@
 
           
           
-             <span id="/2018/12/21/获取图片上传进度/" class="leancloud_visitors" data-flag-title="获取图片上传进度">
+             <span id="/2019/11/06/【基础篇】栈堆调用/" class="leancloud_visitors" data-flag-title="【基础篇】栈堆调用">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,40 +363,29 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>图片上传以及文件上传经常要实时显示百分比，HTML5的Progress Events提供的新特性基本够用。</p>
-<h2 id="HTML5-Progress-Events简介"><a href="#HTML5-Progress-Events简介" class="headerlink" title="HTML5 Progress Events简介"></a>HTML5 Progress Events简介</h2><blockquote>
-<p>Progress Events定义了与客户端服务器通信有关的事件。这些事件最早其实只针对XHR操作，但目前也被其它API借鉴。有以下6个进度事件。</p>
-</blockquote>
-<ul>
-<li>loadstart：在接收到相应数据的第一个字节时触发。</li>
-<li>progress：在接收相应期间持续不断触发。</li>
-<li>error：在请求发生错误时触发。</li>
-<li>abort：在因为调用abort()方法而终止链接时触发。</li>
-<li>load：在接收到完整的相应数据时触发。</li>
-<li>loadend：在通信完成或者触发error、abort或load事件后触发。</li>
+        <h3 id="执行栈"><a href="#执行栈" class="headerlink" title="执行栈"></a>执行栈</h3><p>执行栈，也叫调用栈，具有 LIFO（后进先出）结构，用于存储在代码执行期间创建的所有执行上下文。</p>
+<h3 id="变量环境"><a href="#变量环境" class="headerlink" title="变量环境"></a>变量环境</h3><ul>
+<li><p>在 ES6 中，词法 环境和 变量 环境的区别在于前者用于存储<strong>函数声明和变量（ let 和 const ）绑定，而后者仅用于存储变量（ var ）</strong>绑定。</p>
+</li>
+<li><p>变量提升的原因：<br>在创建阶段，函数声明存储在环境中，而变量会被设置为undefined(在var的情况下) 或保持未初始化（在let和const的情况下）。所以这就是为什么可以在声明之前访问 var 定义的变量（尽管是 undefined ），但如果在声明之前访问 let 和 const 定义的变量就会提示引用错误的原因。这就是所谓的变量提升。</p>
+</li>
 </ul>
-<h2 id="XMLHttpRequest对象"><a href="#XMLHttpRequest对象" class="headerlink" title="XMLHttpRequest对象"></a>XMLHttpRequest对象</h2><blockquote>
-<p>XMLHttpRequest对象包括了以下新特点：</p>
-</blockquote>
-<ul>
-<li>处理字节流（如File、Blob和FormData对象在上传/下载过程中）</li>
-<li>上传/下载过程中的进度事件</li>
-<li>跨域请求</li>
-<li>匿名请求（不发送HTTP请求）</li>
-<li>超时请求</li>
+<p>例子一： 变量提升<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">foo;  <span class="comment">// undefined</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'foo1'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();  <span class="comment">// foo1，foo赋值</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'foo2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// foo2，foo重新赋值</span></span><br></pre></td></tr></table></figure></p>
+<p>例子二： 函数提升</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">foo();  <span class="comment">// foo2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'foo1'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();  <span class="comment">// foo2</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'foo2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// foo2</span></span><br></pre></td></tr></table></figure>
+<p>例子三： 声明优先级<br>函数 &gt; 变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">foo();  <span class="comment">// foo2</span></span><br><span class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'foo1'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo();  <span class="comment">// foo1，foo重新赋值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'foo2'</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">foo(); <span class="comment">// foo1</span></span><br></pre></td></tr></table></figure>
+<p>需要注意的是同一作用域下存在多个同名函数声明，后面的会替换前面的函数声明。</p>
+<h3 id="内存空间"><a href="#内存空间" class="headerlink" title="内存空间"></a>内存空间</h3><h4 id="栈数据结构-（先进后出）"><a href="#栈数据结构-（先进后出）" class="headerlink" title="栈数据结构 （先进后出）"></a>栈数据结构 （先进后出）</h4><p>todo图</p>
+<h4 id="堆数据结构"><a href="#堆数据结构" class="headerlink" title="堆数据结构"></a>堆数据结构</h4><p>堆数据结构是一种树状结构。它的存取数据的方式与书架和书非常相似。我们只需要知道书的名字就可以直接取出书了，并不需要把上面的书取出来。JSON格式的数据中，我们存储的key-value可以是无序的，因为顺序的不同并不影响我们的使用，我们只需要关心书的名字。</p>
+<h4 id="队列（先进先出）（FIFO）的数据结构，这是事件循环（Event-Loop）的基础结构。"><a href="#队列（先进先出）（FIFO）的数据结构，这是事件循环（Event-Loop）的基础结构。" class="headerlink" title="队列（先进先出）（FIFO）的数据结构，这是事件循环（Event Loop）的基础结构。"></a>队列（先进先出）（FIFO）的数据结构，这是事件循环（Event Loop）的基础结构。</h4><h4 id="变量存放（敲黑板）！！"><a href="#变量存放（敲黑板）！！" class="headerlink" title="变量存放（敲黑板）！！"></a>变量存放（敲黑板）！！</h4><ul>
+<li><p>1、基本类型 –&gt; 保存在栈内存中，因为这些类型在内存中分别占有固定大小的空间，通过按值来访问。基本类型一共有6种：Undefined、Null、Boolean、Number 、String和Symbol</p>
+</li>
+<li><p>2、引用类型 –&gt; 保存在堆内存中，因为这种值的大小不固定，因此不能把它们保存到栈内存中，但内存地址大小的固定的，因此保存在堆内存中，在栈内存中存放的只是该对象的访问地址。当查询引用类型的变量时， 先从栈中读取内存地址， 然后再通过地址找到堆中的值。对于这种，我们把它叫做按引用访问。</p>
+</li>
 </ul>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><h4 id="1-获取图片文件"><a href="#1-获取图片文件" class="headerlink" title="1. 获取图片文件"></a>1. 获取图片文件</h4><p>通过绑定</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">onchange</span>=<span class="string">"XXX()"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>file API（使用FileReader对象）同样可以让我们访问的客户端文件内容（文件流或字节）</p>
-<h4 id="2-浏览器接收到服务器的响应"><a href="#2-浏览器接收到服务器的响应" class="headerlink" title="2. 浏览器接收到服务器的响应"></a>2. 浏览器接收到服务器的响应</h4><blockquote>
-<p>onload事件处理程序会接收到一个event对象，其target属性就指向XHR对象实例，因而可以访问到XHR对象的所有方法和属性。</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">req.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(req.response) &#123;</span><br><span class="line">    <span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([req.response]);</span><br><span class="line">    _this.src = <span class="built_in">window</span>.URL.createObjectURL(blob);</span><br><span class="line">    &#125;</span><br><span class="line">」</span><br></pre></td></tr></table></figure>
-<h4 id="3-获取下载进度"><a href="#3-获取下载进度" class="headerlink" title="3. 获取下载进度"></a>3. 获取下载进度</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">req.onprogress = <span class="function"><span class="keyword">function</span>(<span class="params">event</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// event.loaded  the amount of data currently transfered.</span></span><br><span class="line">    <span class="comment">// event.total  the total amount of data to be transferred.</span></span><br><span class="line">    <span class="keyword">const</span> &#123;loaded, total&#125; = event;</span><br><span class="line">    <span class="keyword">const</span> loadingPercentage = <span class="built_in">parseInt</span>((loaded / total) * <span class="number">100</span>); <span class="comment">// 计算出的百分比</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="4-完整代码"><a href="#4-完整代码" class="headerlink" title="4. 完整代码"></a>4. 完整代码</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">getLoadingPercentage: <span class="function"><span class="keyword">function</span>(<span class="params">imgUrl</span>)</span>&#123;</span><br><span class="line">       Image.prototype.onChangeSize;</span><br><span class="line">       Image.prototype.load = <span class="function"><span class="keyword">function</span>(<span class="params">url</span>)</span>&#123;</span><br><span class="line">           <span class="keyword">var</span> _this = <span class="keyword">this</span>;</span><br><span class="line">           <span class="keyword">var</span> req   = ((XMLHttpRequest) ? <span class="keyword">new</span> XMLHttpRequest() : <span class="keyword">new</span> ActiveXObject(<span class="string">"Microsoft.XMLHTTP"</span>));</span><br><span class="line">           <span class="comment">// console.log(url)</span></span><br><span class="line">           req.open(<span class="string">'GET'</span>, url, <span class="literal">true</span>);<span class="comment">// 下载图片</span></span><br><span class="line">           req.responseType = <span class="string">'arraybuffer'</span>;</span><br><span class="line">           req.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">if</span>(req.response) &#123;</span><br><span class="line">               <span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([req.response]);</span><br><span class="line">               _this.src = <span class="built_in">window</span>.URL.createObjectURL(blob);</span><br><span class="line">             &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           req.onprogress = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">             <span class="keyword">if</span>(_this.onChangeSize) &#123;</span><br><span class="line">               _this.onChangeSize(e.loaded, e.total);</span><br><span class="line">             &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           req.send();</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">       img.onChangeSize = <span class="function"><span class="keyword">function</span>(<span class="params">loaded, total</span>) </span>&#123;</span><br><span class="line">           <span class="keyword">var</span> loadingPercentage = <span class="built_in">parseInt</span>((loaded / total) * <span class="number">100</span>);</span><br><span class="line">           <span class="built_in">console</span>.log(loaded + <span class="string">" - "</span> + total + <span class="string">" byte - "</span> + loadingPercentage );</span><br><span class="line">       &#125;</span><br><span class="line">       img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">         <span class="comment">//load completed actions here.</span></span><br><span class="line">         alert(<span class="string">"100% Completed"</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       img.load(imgUrl);</span><br><span class="line">   &#125;,</span><br></pre></td></tr></table></figure>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequestEventTarget/onprogress" target="_blank" rel="noopener">XMLHttpRequestEventTarget API</a><br><a href="https://blog.hhking.cn/2018/11/29/html5-img-upload/" target="_blank" rel="noopener">HTML5 图片上传解决方案</a><br><a href="https://juejin.im/entry/5937c98eac502e0068cf31ae" target="_blank" rel="noopener">Blob对象</a></p>
-</blockquote>
+<p>todo图<br>在计算机的数据结构中，栈比堆的运算速度快，Object是一个复杂的结构且可以扩展：数组可扩充，对象可添加属性，都可以增删改查。将他们放在堆中是为了不影响栈的效率。而是通过引用的方式查找到堆中的实际对象再进行操作。所以查找引用类型值的时候先去栈查找再去堆查找。</p>
+<p>辅助理解的例子<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">问题<span class="number">1</span>：</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">20</span>;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">b = <span class="number">30</span>;</span><br><span class="line"><span class="comment">// 这时a的值是多少？20</span></span><br><span class="line"><span class="comment">// a, b都是基本类型，值是存储在栈中的，ab有独立的栈空间，修改a的值不会影响b的值。</span></span><br><span class="line"></span><br><span class="line">问题<span class="number">2</span>：</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">name</span>: <span class="string">'前端开发'</span> &#125;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">b.name = <span class="string">'进阶'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这时a.name的值是多少？ '进阶'</span></span><br><span class="line"><span class="comment">// 对于问题2，a、b都是引用类型，栈内存中存放地址指向堆内存中的对象，引用类型的复制会为新的变量自动分配一个新的值保存在变量对象中，但只是引用类型的一个地址指针而已，实际指向的是同一个对象，所以修改b.name的值后，相应的a.name也就发生了改变。todo</span></span><br><span class="line"></span><br><span class="line">问题<span class="number">3</span>：</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123; <span class="attr">name</span>: <span class="string">'前端开发'</span> &#125;</span><br><span class="line"><span class="keyword">var</span> b = a;</span><br><span class="line">a = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 这时b的值是多少</span></span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -414,7 +403,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/javascript/" rel="tag"># javascript</a>
+            <a href="/tags/栈堆/" rel="tag"># 栈堆</a>
           
         </div>
       
@@ -427,15 +416,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/08/21/asyncawait/" rel="next" title="async await">
+                <i class="fa fa-chevron-left"></i> async await
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/21/TODOList/" rel="prev" title="2019下半年计划">
-                2019下半年计划 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -576,7 +565,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTML5-Progress-Events简介"><span class="nav-number">2.</span> <span class="nav-text">HTML5 Progress Events简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XMLHttpRequest对象"><span class="nav-number">3.</span> <span class="nav-text">XMLHttpRequest对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">4.</span> <span class="nav-text">思路</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-获取图片文件"><span class="nav-number">4.0.1.</span> <span class="nav-text">1. 获取图片文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-浏览器接收到服务器的响应"><span class="nav-number">4.0.2.</span> <span class="nav-text">2. 浏览器接收到服务器的响应</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-获取下载进度"><span class="nav-number">4.0.3.</span> <span class="nav-text">3. 获取下载进度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-完整代码"><span class="nav-number">4.0.4.</span> <span class="nav-text">4. 完整代码</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#执行栈"><span class="nav-number">1.</span> <span class="nav-text">执行栈</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#变量环境"><span class="nav-number">2.</span> <span class="nav-text">变量环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存空间"><span class="nav-number">3.</span> <span class="nav-text">内存空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#栈数据结构-（先进后出）"><span class="nav-number">3.1.</span> <span class="nav-text">栈数据结构 （先进后出）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#堆数据结构"><span class="nav-number">3.2.</span> <span class="nav-text">堆数据结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列（先进先出）（FIFO）的数据结构，这是事件循环（Event-Loop）的基础结构。"><span class="nav-number">3.3.</span> <span class="nav-text">队列（先进先出）（FIFO）的数据结构，这是事件循环（Event Loop）的基础结构。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量存放（敲黑板）！！"><span class="nav-number">3.4.</span> <span class="nav-text">变量存放（敲黑板）！！</span></a></li></ol></li></ol></div>
             
 
           </div>
