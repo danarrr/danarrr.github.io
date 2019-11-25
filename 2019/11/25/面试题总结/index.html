@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="danarrr">
 <meta property="og:description" content="1. 简单描述下闭包。以及闭包的作用域？如果使用很多个闭包有什么坏处？闭包的理解： 函数A内有函数B，函数B可以访问到函数A的变量.123456789101112131415161718192021function f1()&amp;#123;    var n=999;    function f2()&amp;#123;　　　　alert(n); // 999　　　&amp;#125;&amp;#125;// 扩展funct">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-25T14:14:16.198Z">
+<meta property="og:updated_time" content="2019-11-25T14:21:39.132Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="面试题总结">
 <meta name="twitter:description" content="1. 简单描述下闭包。以及闭包的作用域？如果使用很多个闭包有什么坏处？闭包的理解： 函数A内有函数B，函数B可以访问到函数A的变量.123456789101112131415161718192021function f1()&amp;#123;    var n=999;    function f2()&amp;#123;　　　　alert(n); // 999　　　&amp;#125;&amp;#125;// 扩展funct">
@@ -390,14 +390,17 @@
 </ul>
 <ol>
 <li>display：none;  ovibility: hidden; opacity: 0;三者间有什么区别？<br>答：除了dom节点是否继续存在之外，display：none会引起重排，消耗性能。</li>
-<li>如何减少重排？<br>答:<br>方案一： 需要计算大小和变化大小的元素或者动画尽量脱离文档流, 例如修改定位：则不会引起重排.<br>方案二：启用GPU加速： GPU 硬件加速是指应用 GPU 的图形性能对浏览器中的一些图形操作交给 GPU 来完成，因为 GPU 是专门为处理图形而设计，所以它在速度和能耗上更有效率。<br>GPU 加速通常包括以下几个部分：Canvas2D，布局合成, CSS3转换，CSS3 3D变换，WebGL和视频。<h4 id="4-浏览器渲染页面过程。"><a href="#4-浏览器渲染页面过程。" class="headerlink" title="4. 浏览器渲染页面过程。"></a>4. 浏览器渲染页面过程。</h4>前提： 输入网址 -&gt; dns解析（如果搜索的域名找不到对应的内网ip, 则开始解析） -&gt; TCP三次握手，确认可以正常通信 -&gt; 客户端接收服务器发送过来的数据<br>开始渲染页面： </li>
+<li>如何减少重排？<br>答:<br>方案一： 需要计算大小和变化大小的元素或者动画尽量脱离文档流, 例如修改定位：则不会引起重排.<br>方案二：启用GPU加速： GPU 硬件加速是指应用 GPU 的图形性能对浏览器中的一些图形操作交给 GPU 来完成，因为 GPU 是专门为处理图形而设计，所以它在速度和能耗上更有效率。<br>GPU 加速通常包括以下几个部分：Canvas2D，布局合成, CSS3转换，CSS3 3D变换，WebGL和视频。</li>
+</ol>
+<h4 id="4-浏览器渲染页面过程。"><a href="#4-浏览器渲染页面过程。" class="headerlink" title="4. 浏览器渲染页面过程。"></a>4. 浏览器渲染页面过程。</h4><p>前提： 输入网址 -&gt; dns解析（如果搜索的域名找不到对应的内网ip, 则开始解析） -&gt; TCP三次握手，确认可以正常通信 -&gt; 客户端接收服务器发送过来的数据<br>开始渲染页面： </p>
+<ol>
 <li>浏览器解析html源码，然后创建一个dom树，并行请求js/css/image 在dom树中。dom树根节点就是documentElement.<br>|</li>
 <li>浏览器解析css代码，构建CSSOM树。解析css树优先级如下：<br> html中的style &gt; 内联样式 &gt; 大于外联样式 &gt; 用户设置 &gt; 大于浏览器默认<br>|</li>
 <li>渲染树render Tree  =  cssOM树 + dom树<br> 渲染树会忽略掉不需要渲染的元素，比如head、display:none的元素等。<br>|</li>
 <li>一旦渲染树创建好了，浏览器就可以根据渲染树直接把页面绘制到屏幕上。</li>
 </ol>
 <p>以上四个步骤并不是一次性顺序完成的。如果DOM或者CSSOM被修改，以上过程会被重复执行。实际上，CSS和JavaScript往往会多次修改DOM或者CSSOM。</p>
-<h4 id="关于微任务和宏任务的执行顺序。"><a href="#关于微任务和宏任务的执行顺序。" class="headerlink" title="关于微任务和宏任务的执行顺序。"></a>关于微任务和宏任务的执行顺序。</h4><p>看完能更深层的了解event loop<br><a href="https://segmentfault.com/a/1190000014940904?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014940904?utm_source=tag-newest</a><br>难点备注：<br>这就是为什么‘promise1’,’promise2’会打印在‘script end’之后，因为所有微任务执行的时候，当前执行栈的代码必须已经执行完毕。‘promise1’,’promise2’会打印在‘setTimeout’之前是因为所有微任务总会在下一个宏任务之前全部执行完毕。</p>
+<h4 id="5-关于微任务和宏任务的执行顺序"><a href="#5-关于微任务和宏任务的执行顺序" class="headerlink" title="5.关于微任务和宏任务的执行顺序"></a>5.关于微任务和宏任务的执行顺序</h4><p>看完能更深层的了解event loop<br><a href="https://segmentfault.com/a/1190000014940904?utm_source=tag-newest" target="_blank" rel="noopener">https://segmentfault.com/a/1190000014940904?utm_source=tag-newest</a><br>难点备注：<br>这就是为什么‘promise1’,’promise2’会打印在‘script end’之后，因为所有微任务执行的时候，当前执行栈的代码必须已经执行完毕。‘promise1’,’promise2’会打印在‘setTimeout’之前是因为所有微任务总会在下一个宏任务之前全部执行完毕。</p>
 
       
     </div>
@@ -577,7 +580,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-简单描述下闭包。以及闭包的作用域？如果使用很多个闭包有什么坏处？"><span class="nav-number">1.</span> <span class="nav-text">1. 简单描述下闭包。以及闭包的作用域？如果使用很多个闭包有什么坏处？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-什么是原型和原型链？举例说下编译前编译后，组件间constructor和this的指向。"><span class="nav-number">2.</span> <span class="nav-text">2. 什么是原型和原型链？举例说下编译前编译后，组件间constructor和this的指向。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-简述下重绘和重排？如何优化？"><span class="nav-number">3.</span> <span class="nav-text">3. 简述下重绘和重排？如何优化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-浏览器渲染页面过程。"><span class="nav-number">4.</span> <span class="nav-text">4. 浏览器渲染页面过程。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关于微任务和宏任务的执行顺序。"><span class="nav-number">5.</span> <span class="nav-text">关于微任务和宏任务的执行顺序。</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-简单描述下闭包。以及闭包的作用域？如果使用很多个闭包有什么坏处？"><span class="nav-number">1.</span> <span class="nav-text">1. 简单描述下闭包。以及闭包的作用域？如果使用很多个闭包有什么坏处？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-什么是原型和原型链？举例说下编译前编译后，组件间constructor和this的指向。"><span class="nav-number">2.</span> <span class="nav-text">2. 什么是原型和原型链？举例说下编译前编译后，组件间constructor和this的指向。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-简述下重绘和重排？如何优化？"><span class="nav-number">3.</span> <span class="nav-text">3. 简述下重绘和重排？如何优化？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-浏览器渲染页面过程。"><span class="nav-number">4.</span> <span class="nav-text">4. 浏览器渲染页面过程。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-关于微任务和宏任务的执行顺序"><span class="nav-number">5.</span> <span class="nav-text">5.关于微任务和宏任务的执行顺序</span></a></li></ol></div>
             
 
           </div>
