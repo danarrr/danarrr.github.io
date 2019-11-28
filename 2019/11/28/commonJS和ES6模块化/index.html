@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="异步,">
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
@@ -79,18 +79,17 @@
 
 
 
-<meta name="description" content="基本用法async函数返回一个 Promise 对象，可以使用then方法添加回调函数。当函数执行的时候，一旦遇到await就会先返回 -&amp;gt; 等到异步操作完成 -&amp;gt; 再接着执行函数体内后面的语句。123456789101112function timeout(ms)&amp;#123;    return new Promise(resolve =&amp;gt; &amp;#123;        setT">
-<meta name="keywords" content="异步">
+<meta name="description" content="总结 CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。CommonJS 同步加载，ES6 模块异步加载。  Common Js 同步加载1234//引入自定义的模块时，参数包含路径，可省略.js//引入核心模块时，不需要带路径，如var http = require(&quot;http&quot;);var math = require(&apos;./math&apos;);math.add(1, 2)//">
 <meta property="og:type" content="article">
-<meta property="og:title" content="async await">
-<meta property="og:url" content="http://yoursite.com/2019/08/21/asyncawait/index.html">
+<meta property="og:title" content="commonJS和ES6模块化">
+<meta property="og:url" content="http://yoursite.com/2019/11/28/commonJS和ES6模块化/index.html">
 <meta property="og:site_name" content="danarrr">
-<meta property="og:description" content="基本用法async函数返回一个 Promise 对象，可以使用then方法添加回调函数。当函数执行的时候，一旦遇到await就会先返回 -&amp;gt; 等到异步操作完成 -&amp;gt; 再接着执行函数体内后面的语句。123456789101112function timeout(ms)&amp;#123;    return new Promise(resolve =&amp;gt; &amp;#123;        setT">
+<meta property="og:description" content="总结 CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。CommonJS 同步加载，ES6 模块异步加载。  Common Js 同步加载1234//引入自定义的模块时，参数包含路径，可省略.js//引入核心模块时，不需要带路径，如var http = require(&quot;http&quot;);var math = require(&apos;./math&apos;);math.add(1, 2)//">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-08-28T13:10:01.911Z">
+<meta property="og:updated_time" content="2019-11-28T04:24:13.154Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="async await">
-<meta name="twitter:description" content="基本用法async函数返回一个 Promise 对象，可以使用then方法添加回调函数。当函数执行的时候，一旦遇到await就会先返回 -&amp;gt; 等到异步操作完成 -&amp;gt; 再接着执行函数体内后面的语句。123456789101112function timeout(ms)&amp;#123;    return new Promise(resolve =&amp;gt; &amp;#123;        setT">
+<meta name="twitter:title" content="commonJS和ES6模块化">
+<meta name="twitter:description" content="总结 CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。CommonJS 同步加载，ES6 模块异步加载。  Common Js 同步加载1234//引入自定义的模块时，参数包含路径，可省略.js//引入核心模块时，不需要带路径，如var http = require(&quot;http&quot;);var math = require(&apos;./math&apos;);math.add(1, 2)//">
 
 
 
@@ -120,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/08/21/asyncawait/">
+  <link rel="canonical" href="http://yoursite.com/2019/11/28/commonJS和ES6模块化/">
 
 
 
 
 
-  <title>async await | danarrr</title>
+  <title>commonJS和ES6模块化 | danarrr</title>
   
 
 
@@ -253,7 +252,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/21/asyncawait/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/28/commonJS和ES6模块化/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="danarrr">
@@ -270,7 +269,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">async await</h1>
+          <h1 class="post-title" itemprop="name headline">commonJS和ES6模块化</h1>
         
 
         <div class="post-meta">
@@ -282,8 +281,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-08-21T14:21:12+08:00">
-                2019-08-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-28T12:05:04+08:00">
+                2019-11-28
               </time>
             
 
@@ -293,28 +292,6 @@
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -323,8 +300,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/08/21/asyncawait/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/08/21/asyncawait/" itemprop="commentsCount"></span>
+                <a href="/2019/11/28/commonJS和ES6模块化/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/11/28/commonJS和ES6模块化/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -332,7 +309,7 @@
 
           
           
-             <span id="/2019/08/21/asyncawait/" class="leancloud_visitors" data-flag-title="async await">
+             <span id="/2019/11/28/commonJS和ES6模块化/" class="leancloud_visitors" data-flag-title="commonJS和ES6模块化">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -363,31 +340,26 @@
       
 
       
-        <h4 id="基本用法"><a href="#基本用法" class="headerlink" title="基本用法"></a>基本用法</h4><p>async函数返回一个 Promise 对象，可以使用then方法添加回调函数。<br>当函数执行的时候，一旦遇到await就会先返回 -&gt; 等到异步操作完成 -&gt; 再接着执行函数体内后面的语句。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">timeout</span>(<span class="params">ms</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> &#123;</span><br><span class="line">        setTimeout(resolve, ms);</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncPrint</span>(<span class="params">value, ms</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">await</span> timeout(ms);</span><br><span class="line">    <span class="built_in">console</span>.log(value)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">asyncPrint(<span class="string">'hello world'</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure></p>
-<h4 id="多种使用方式"><a href="#多种使用方式" class="headerlink" title="多种使用方式"></a>多种使用方式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 函数声明</span></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">fun1</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 函数表达式</span></span><br><span class="line"><span class="keyword">const</span> fun2 = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 箭头函数</span></span><br><span class="line"><span class="keyword">const</span> fun3 = <span class="keyword">async</span> () =&gt; &#123;&#125;;</span><br></pre></td></tr></table></figure>
-<h4 id="错误处理机制"><a href="#错误处理机制" class="headerlink" title="错误处理机制"></a>错误处理机制</h4><blockquote>
-<p>await命令后面的 Promise 对象如果变为reject状态，则reject的参数会被catch方法的回调函数接收到。</p>
+        <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><blockquote>
+<p>CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。<br>CommonJS 同步加载，ES6 模块异步加载。</p>
 </blockquote>
-<ul>
-<li>!! 任何一个await语句后面的 Promise 对象变为reject状态，那么整个async函数都会中断执行。如果想继续执行介意再用try catch 包起来<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'出错了'</span>);</span><br><span class="line">  <span class="comment">// 或</span></span><br><span class="line">  <span class="keyword">await</span> <span class="built_in">Promise</span>.reject(<span class="string">'出错了'</span>);</span><br><span class="line">  <span class="keyword">await</span> <span class="built_in">Promise</span>.resolve(<span class="string">'成功'</span>); <span class="comment">// 不会执行</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f().then(</span><br><span class="line">  v =&gt; <span class="built_in">console</span>.log(v),</span><br><span class="line">  e =&gt; <span class="built_in">console</span>.log(e) <span class="comment">// error</span></span><br><span class="line">)</span><br><span class="line"><span class="comment">// Error: 出错了</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h4><blockquote>
-<p>async返回一个promise对象，必须等内部所有await命令执行完毕 或 遇到return 或 抛出错误，才会发生状态改变。、async函数内部的异步操作执行完，才会执行then方法指定的回调函数。</p>
-</blockquote>
-<h4 id="同时触发"><a href="#同时触发" class="headerlink" title="同时触发"></a>同时触发</h4><blockquote>
-<p>多个await命令后面的异步操作，如果不存在继发关系，最好让它们同时触发.</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [foo, bar] = <span class="keyword">await</span> <span class="built_in">Promise</span>.all([getFoo(), getBar()]);</span><br></pre></td></tr></table></figure>
-<h4 id="划重点-之前踩过的坑"><a href="#划重点-之前踩过的坑" class="headerlink" title="划重点 之前踩过的坑"></a>划重点 之前踩过的坑</h4><ol>
-<li>await命令只能用在最接近一层的async函数之中</li>
-<li>就算forEach函数为async函数，看看下面函数有什么错误<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dbFuc</span>(<span class="params">db</span>) </span>&#123; <span class="comment">//这里不需要 async</span></span><br><span class="line">  <span class="keyword">let</span> docs = [&#123;&#125;, &#123;&#125;, &#123;&#125;];</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 可能得到错误结果  原因  forEach是一个异步函数 这里想继发执行可以用for</span></span><br><span class="line">  docs.forEach(<span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params">doc</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">await</span> db.post(doc);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 并发执行可以用promise.all</span></span><br></pre></td></tr></table></figure>
+<h4 id="Common-Js"><a href="#Common-Js" class="headerlink" title="Common Js"></a>Common Js</h4><ol>
+<li>同步加载<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//引入自定义的模块时，参数包含路径，可省略.js</span></span><br><span class="line"><span class="comment">//引入核心模块时，不需要带路径，如var http = require("http");</span></span><br><span class="line"><span class="keyword">var</span> math = <span class="built_in">require</span>(<span class="string">'./math'</span>);</span><br><span class="line">math.add(<span class="number">1</span>, <span class="number">2</span>)<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<h4 id="栈堆问题-了解一哈就好"><a href="#栈堆问题-了解一哈就好" class="headerlink" title="栈堆问题 了解一哈就好"></a>栈堆问题 了解一哈就好</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  b().then(<span class="function"><span class="params">()</span> =&gt;</span> c());</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>上面代码中，函数a内部运行了一个异步任务b()。当b()运行的时候，函数a()不会中断，而是继续执行。等到b()运行结束，可能a()早就运行结束了，b()所在的上下文环境已经消失了。如果b()或c()报错，错误堆栈将不包括a()。</p>
-<p>现在将这个例子改成async函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="keyword">async</span> () =&gt; &#123;</span><br><span class="line">  <span class="keyword">await</span> b();</span><br><span class="line">  c();</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>上面代码中，b()运行的时候，a()是暂停执行，上下文环境都保存着。一旦b()或c()报错，错误堆栈将包括a()。</p>
+<p>从上面可以看出 math.add(1,2)必须要等待math.js加载完成，即<code bgcolor="#7FFFD4">require是同步</code>的。</p>
+<p>为什么推荐在服务器端使用：<br>在服务器端，<code bgcolor="#7FFFD4">模块文件保存在本地磁盘</code>，等待时间就是磁盘的读取时间。但对于浏览器而言，由于模块都放在服务器端，等待时间取决于网上的快慢。因此更合理的方案是异步加载模块。</p>
+<ol start="2">
+<li>CommonJs模块输出的是<code bgcolor="#7FFFD4">值的拷贝</code>，也就是说，一旦输出一个值，模块内部的变化不会影响到这个值.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// common.js</span></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> printCount = <span class="function"><span class="params">()</span> =&gt;</span>&#123; </span><br><span class="line">   <span class="keyword">return</span> ++count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">     printCount: printCount,</span><br><span class="line">     count: count</span><br><span class="line">&#125;;</span><br><span class="line"> <span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">let</span> v = <span class="built_in">require</span>(<span class="string">'./common'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(v.count); </span><br><span class="line"><span class="built_in">console</span>.log(v.printCount()); </span><br><span class="line"><span class="built_in">console</span>.log(v.count); </span><br><span class="line"><span class="comment">// 打印结果 1 2 1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>因为：count是一个原始类型的值，会被缓存。<br>修改为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">     printCount: printCount,</span><br><span class="line">     get count()&#123;</span><br><span class="line">         <span class="keyword">return</span> count <span class="comment">//要输出函数才能得到内部变动的值</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 打印出 1 2 2</span></span><br></pre></td></tr></table></figure></p>
+<p>缺点：<br>(1)不能并行加载模块，会阻塞浏览器加载；<br>(2)代码无法直接运行在浏览器环境下，必须通过工具转换成标准的 ES5；</p>
+<h4 id="es6module"><a href="#es6module" class="headerlink" title="es6module"></a>es6module</h4><blockquote>
+<p>ES6模块是动态引用，<code bgcolor="#7FFFD4">动态地去加载值</code>，并且<code bgcolor="#7FFFD4">不能重新赋值</code>。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">let</span> count = <span class="number">1</span>;</span><br><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">printCount</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     ++count;</span><br><span class="line">&#125; </span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123; count, printCount&#125;</span><br><span class="line"><span class="comment">// main3.js</span></span><br><span class="line"><span class="keyword">import</span> res form <span class="string">'./main3.js'</span></span><br><span class="line"><span class="built_in">console</span>.log(res.count)</span><br></pre></td></tr></table></figure>
+<p>缺点：<br>浏览器需要编译成ES5。</p>
 
       
     </div>
@@ -403,12 +375,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/异步/" rel="tag"># 异步</a>
-          
-        </div>
-      
 
       
       
@@ -418,8 +384,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/05/ajax-or-axios/" rel="next" title="ajax or axios">
-                <i class="fa fa-chevron-left"></i> ajax or axios
+              <a href="/2019/11/25/面试题总结/" rel="next" title="面试题总结">
+                <i class="fa fa-chevron-left"></i> 面试题总结
               </a>
             
           </div>
@@ -427,10 +393,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/11/06/【基础篇】栈堆调用/" rel="prev" title="【基础篇】栈堆调用">
-                【基础篇】栈堆调用 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -571,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本用法"><span class="nav-number">1.</span> <span class="nav-text">基本用法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多种使用方式"><span class="nav-number">2.</span> <span class="nav-text">多种使用方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#错误处理机制"><span class="nav-number">3.</span> <span class="nav-text">错误处理机制</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行"><span class="nav-number">4.</span> <span class="nav-text">执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同时触发"><span class="nav-number">5.</span> <span class="nav-text">同时触发</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#划重点-之前踩过的坑"><span class="nav-number">6.</span> <span class="nav-text">划重点 之前踩过的坑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#栈堆问题-了解一哈就好"><span class="nav-number">7.</span> <span class="nav-text">栈堆问题 了解一哈就好</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">1.</span> <span class="nav-text">总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Common-Js"><span class="nav-number">2.</span> <span class="nav-text">Common Js</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#es6module"><span class="nav-number">3.</span> <span class="nav-text">es6module</span></a></li></ol></div>
             
 
           </div>
