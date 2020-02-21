@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="danarrr">
 <meta property="og:description" content="总结 CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。CommonJS 同步加载，ES6 模块异步加载。  Common Js 同步加载1234//引入自定义的模块时，参数包含路径，可省略.js//引入核心模块时，不需要带路径，如var http = require(&quot;http&quot;);var math = require(&apos;./math&apos;);math.add(1, 2)//">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-28T04:24:13.154Z">
+<meta property="og:updated_time" content="2020-02-20T16:22:04.052Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="commonJS和ES6模块化">
 <meta name="twitter:description" content="总结 CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。CommonJS 同步加载，ES6 模块异步加载。  Common Js 同步加载1234//引入自定义的模块时，参数包含路径，可省略.js//引入核心模块时，不需要带路径，如var http = require(&quot;http&quot;);var math = require(&apos;./math&apos;);math.add(1, 2)//">
@@ -295,16 +295,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/11/28/commonJS和ES6模块化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2019/11/28/commonJS和ES6模块化/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -353,7 +343,8 @@
 <li>CommonJs模块输出的是<code bgcolor="#7FFFD4">值的拷贝</code>，也就是说，一旦输出一个值，模块内部的变化不会影响到这个值.<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// common.js</span></span><br><span class="line"><span class="keyword">var</span> count = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> printCount = <span class="function"><span class="params">()</span> =&gt;</span>&#123; </span><br><span class="line">   <span class="keyword">return</span> ++count;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">     printCount: printCount,</span><br><span class="line">     count: count</span><br><span class="line">&#125;;</span><br><span class="line"> <span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">let</span> v = <span class="built_in">require</span>(<span class="string">'./common'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(v.count); </span><br><span class="line"><span class="built_in">console</span>.log(v.printCount()); </span><br><span class="line"><span class="built_in">console</span>.log(v.count); </span><br><span class="line"><span class="comment">// 打印结果 1 2 1</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p>因为：count是一个原始类型的值，会被缓存。<br>修改为：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">     printCount: printCount,</span><br><span class="line">     get count()&#123;</span><br><span class="line">         <span class="keyword">return</span> count <span class="comment">//要输出函数才能得到内部变动的值</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 打印出 1 2 2</span></span><br></pre></td></tr></table></figure></p>
+<p>因为：count是一个原始类型的值，会被缓存。<br>修改为：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">     printCount: printCount,</span><br><span class="line">     get count()&#123;</span><br><span class="line">         <span class="keyword">return</span> count <span class="comment">//要输出函数才能得到内部变动的值</span></span><br><span class="line">     &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 打印出 1 2 2</span></span><br></pre></td></tr></table></figure>
 <p>缺点：<br>(1)不能并行加载模块，会阻塞浏览器加载；<br>(2)代码无法直接运行在浏览器环境下，必须通过工具转换成标准的 ES5；</p>
 <h4 id="es6module"><a href="#es6module" class="headerlink" title="es6module"></a>es6module</h4><blockquote>
 <p>ES6模块是动态引用，<code bgcolor="#7FFFD4">动态地去加载值</code>，并且<code bgcolor="#7FFFD4">不能重新赋值</code>。</p>
@@ -394,6 +385,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/02/20/babel7记录/" rel="prev" title="babel7">
+                babel7 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -422,11 +417,7 @@
           
 
   
-    <div class="comments" id="comments">
-      
-        <div id="gitment-container"></div>
-      
-    </div>
+  <div id="gitalk-container"></div>
 
   
 
@@ -478,7 +469,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -500,7 +491,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -553,7 +544,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -719,44 +710,24 @@
 
 
 
-<!-- LOCAL: You can save these files to your site and update links -->
-    
-        
-        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
-        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
-    
-<!-- END LOCAL -->
-
-    
-
-    
-      <script type="text/javascript">
-      function renderGitment(){
-        var gitment = new Gitmint({
-            id: window.location.pathname, 
-            owner: 'danarrr',
-            repo: 'gitment-comments',
-            
-            lang: "" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
-            
-            oauth: {
-            
-            
-                client_secret: '695821a0cf385443288a792e73a848828fa4ac85',
-            
-                client_id: 'a89fb921b61c205fb969'
-            }});
-        gitment.render('gitment-container');
-      }
-
-      
-      renderGitment();
-      
-      </script>
-    
 
 
 
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: 'a89fb921b61c205fb969',
+      clientSecret: '695821a0cf385443288a792e73a848828fa4ac85',
+      repo: 'gitment-comments',
+      owner: 'danarrr',
+      admin: ['danarrr'],
+      id: location.pathname,
+      distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+  </script>
 
 
 

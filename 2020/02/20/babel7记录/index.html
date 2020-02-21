@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="charles,">
+  <meta name="keywords" content="babel,">
 
 
 
@@ -79,20 +79,18 @@
 
 
 
-<meta name="description" content="前言本文主要为普及charles原理和用处，具体使用移步传送门或官网。 原理：Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。 主要的功能包括： 截取 Http 和 Https 网络封包。 支持重发网络请求，方便后端调试。 支持修改网络请求参数。 支持网络请求的截获并动态修改。 支持模拟慢速网络。  Charles 4">
-<meta name="keywords" content="charles">
+<meta name="description" content="题外话前言： 最近在开发脚手架过程，接入了babel7来编译故有了下文，编译的出发点需要多考虑让用户无感使用的方式去配置，例如：用户没有配置ESlint/tsconfig的话则自动生成一份配置文件并自动编译，等脚手架开发完再回来展述吧。。。 运行方式众所周知babel可用于编译js,ES678 to ES5, 兼容一些浏览器的运行。babel 总共分为三个阶段：解析，转换，生成。 preset a">
+<meta name="keywords" content="babel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="那些年大佬要你懂的抓包工具charles">
-<meta property="og:url" content="http://yoursite.com/2019/01/18/那些年大佬要你懂的charles/index.html">
+<meta property="og:title" content="babel7">
+<meta property="og:url" content="http://yoursite.com/2020/02/20/babel7记录/index.html">
 <meta property="og:site_name" content="danarrr">
-<meta property="og:description" content="前言本文主要为普及charles原理和用处，具体使用移步传送门或官网。 原理：Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。 主要的功能包括： 截取 Http 和 Https 网络封包。 支持重发网络请求，方便后端调试。 支持修改网络请求参数。 支持网络请求的截获并动态修改。 支持模拟慢速网络。  Charles 4">
+<meta property="og:description" content="题外话前言： 最近在开发脚手架过程，接入了babel7来编译故有了下文，编译的出发点需要多考虑让用户无感使用的方式去配置，例如：用户没有配置ESlint/tsconfig的话则自动生成一份配置文件并自动编译，等脚手架开发完再回来展述吧。。。 运行方式众所周知babel可用于编译js,ES678 to ES5, 兼容一些浏览器的运行。babel 总共分为三个阶段：解析，转换，生成。 preset a">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/2019/01/18/那些年大佬要你懂的charles/charles-pro-3.png">
-<meta property="og:updated_time" content="2019-08-21T05:58:02.036Z">
+<meta property="og:updated_time" content="2020-02-21T03:42:12.422Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="那些年大佬要你懂的抓包工具charles">
-<meta name="twitter:description" content="前言本文主要为普及charles原理和用处，具体使用移步传送门或官网。 原理：Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。 主要的功能包括： 截取 Http 和 Https 网络封包。 支持重发网络请求，方便后端调试。 支持修改网络请求参数。 支持网络请求的截获并动态修改。 支持模拟慢速网络。  Charles 4">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/18/那些年大佬要你懂的charles/charles-pro-3.png">
+<meta name="twitter:title" content="babel7">
+<meta name="twitter:description" content="题外话前言： 最近在开发脚手架过程，接入了babel7来编译故有了下文，编译的出发点需要多考虑让用户无感使用的方式去配置，例如：用户没有配置ESlint/tsconfig的话则自动生成一份配置文件并自动编译，等脚手架开发完再回来展述吧。。。 运行方式众所周知babel可用于编译js,ES678 to ES5, 兼容一些浏览器的运行。babel 总共分为三个阶段：解析，转换，生成。 preset a">
 
 
 
@@ -122,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/18/那些年大佬要你懂的charles/">
+  <link rel="canonical" href="http://yoursite.com/2020/02/20/babel7记录/">
 
 
 
 
 
-  <title>那些年大佬要你懂的抓包工具charles | danarrr</title>
+  <title>babel7 | danarrr</title>
   
 
 
@@ -255,7 +253,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/18/那些年大佬要你懂的charles/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/babel7记录/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="danarrr">
@@ -272,7 +270,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">那些年大佬要你懂的抓包工具charles</h1>
+          <h1 class="post-title" itemprop="name headline">babel7</h1>
         
 
         <div class="post-meta">
@@ -284,8 +282,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-01-18T10:12:04+08:00">
-                2019-01-18
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-20T11:58:48+08:00">
+                2020-02-20
               </time>
             
 
@@ -295,28 +293,6 @@
           </span>
 
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/其他/" itemprop="url" rel="index">
-                    <span itemprop="name">其他</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -324,7 +300,7 @@
 
           
           
-             <span id="/2019/01/18/那些年大佬要你懂的charles/" class="leancloud_visitors" data-flag-title="那些年大佬要你懂的抓包工具charles">
+             <span id="/2020/02/20/babel7记录/" class="leancloud_visitors" data-flag-title="babel7">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -355,30 +331,24 @@
       
 
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>本文主要为普及charles原理和用处，具体使用移步<br><a href="https://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="noopener">传送门</a><br>或官网。</p>
-<h2 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h2><p>Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。</p>
-<h2 id="主要的功能包括："><a href="#主要的功能包括：" class="headerlink" title="主要的功能包括："></a>主要的功能包括：</h2><ol>
-<li>截取 Http 和 Https 网络封包。</li>
-<li>支持重发网络请求，方便后端调试。</li>
-<li>支持修改网络请求参数。</li>
-<li>支持网络请求的截获并动态修改。</li>
-<li>支持模拟慢速网络。</li>
-</ol>
-<h2 id="Charles-4-新增的主要功能包括："><a href="#Charles-4-新增的主要功能包括：" class="headerlink" title="Charles 4 新增的主要功能包括："></a>Charles 4 新增的主要功能包括：</h2><ol>
-<li>支持 Http 2。</li>
-<li>支持 IPv6</li>
-</ol>
-<h2 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h2><h3 id="将charles设置成系统代理"><a href="#将charles设置成系统代理" class="headerlink" title="将charles设置成系统代理"></a>将charles设置成系统代理</h3><blockquote>
-<p>之前提到，Charles 是通过将自己设置成代理服务器来完成封包截取的，所以使用 Charles 的第一步是将其设置成系统的代理服务器。</p>
-</blockquote>
-<p>后在需要将 Charles 设置成系统代理时，选择菜单中的 “Proxy” -&gt; “Mac OS X Proxy” 来将 Charles 设置成系统代理。<br><img src="/2019/01/18/那些年大佬要你懂的charles/charles-pro-3.png" alt=""></p>
-<p>需要注意的是，Chrome 和 Firefox 浏览器默认并不使用系统的代理服务器设置，而 Charles 是通过将自己设置成代理服务器来完成封包截取的，所以在默认情况下无法截取 Chrome 和 Firefox 浏览器的网络通讯内容。如果你需要截取的话，在 Chrome 中设置成使用系统的代理服务器设置即可，或者直接将代理服务器设置成 127.0.0.1:8888 也可达到相同效果。</p>
-<h3 id="过滤网络请求"><a href="#过滤网络请求" class="headerlink" title="过滤网络请求"></a>过滤网络请求</h3><h3 id="截取iphone的网络封包（常用）"><a href="#截取iphone的网络封包（常用）" class="headerlink" title="截取iphone的网络封包（常用）"></a>截取iphone的网络封包（常用）</h3><p>原理：将我们移动端上所有请求发送到PC端Charles代理中，Charles会自动抓取http网络包分析请求和返回值。</p>
-<h3 id="截取https协议信息"><a href="#截取https协议信息" class="headerlink" title="截取https协议信息"></a>截取https协议信息</h3><p>需要另外在mac上安装证书！才可以截取该 Host 的所有 SSL 请求</p>
-<h3 id="模拟慢速网络"><a href="#模拟慢速网络" class="headerlink" title="模拟慢速网络"></a>模拟慢速网络</h3><p>在做移动开发的时候，我们常常需要模拟慢速网络或者高延迟的网络，以测试在移动网络下，应用的表现是否正常。Charles 对此需求提供了很好的支持。</p>
-<h3 id="修改网络请求（常用）"><a href="#修改网络请求（常用）" class="headerlink" title="修改网络请求（常用）"></a>修改网络请求（常用）</h3><p>有些时候为了调试服务器的接口，我们需要反复尝试不同参数的网络请求。Charles 可以方便地提供网络请求的修改和重发功能（感觉用postman更快捷）。<br>我们可以修改该请求的任何信息，包括 URL 地址、端口、参数等。</p>
-<h3 id="压力测试-略"><a href="#压力测试-略" class="headerlink" title="压力测试 略"></a>压力测试 略</h3><h3 id="修改服务器返回内容（常用）"><a href="#修改服务器返回内容（常用）" class="headerlink" title="修改服务器返回内容（常用）"></a>修改服务器返回内容（常用）</h3><p>本地映射/Map Local Settings：把需要请求网络的文件映射为请求本地文件（常用）<br>远程映射/Map Remote Settings：把你要请求的地址，映射到一个远程地址；相当于把你的请求地址修改了。</p>
-<h3 id="设置外部代理，解决与翻墙软件的冲突"><a href="#设置外部代理，解决与翻墙软件的冲突" class="headerlink" title="设置外部代理，解决与翻墙软件的冲突"></a>设置外部代理，解决与翻墙软件的冲突</h3>
+        <h3 id="题外话"><a href="#题外话" class="headerlink" title="题外话"></a>题外话</h3><p>前言： 最近在开发脚手架过程，接入了babel7来编译故有了下文，编译的出发点需要多考虑让用户无感使用的方式去配置，<br>例如：用户没有配置ESlint/tsconfig的话则自动生成一份配置文件并自动编译，等脚手架开发完再回来展述吧。。。</p>
+<h3 id="运行方式"><a href="#运行方式" class="headerlink" title="运行方式"></a>运行方式</h3><p>众所周知babel可用于编译js,ES678 to ES5, 兼容一些浏览器的运行。<br>babel 总共分为三个阶段：解析，转换，生成。</p>
+<h3 id="preset-and-plugin"><a href="#preset-and-plugin" class="headerlink" title="preset and plugin"></a>preset and plugin</h3><p>preset配置其实是整合了一部分插件，让用户在需要快速构建项目的时候不用花费过多的时间自定义安装&amp;定义插件。</p>
+<h4 id="先说一下他们的执行顺序"><a href="#先说一下他们的执行顺序" class="headerlink" title="先说一下他们的执行顺序"></a>先说一下他们的执行顺序</h4><ul>
+<li>Plugin 会运行在 Preset 之前。</li>
+<li>Plugin 会从前到后顺序执行。</li>
+<li>Preset 的顺序则 刚好相反(从后向前)。</li>
+</ul>
+<h3 id="编译插件"><a href="#编译插件" class="headerlink" title="编译插件"></a>编译插件</h3><h4 id="env"><a href="#env" class="headerlink" title="env"></a>env</h4><p>env最为常用,官方介绍是取代了以往所有版本的preset。<br>babel-preset-es2015<br>babel-preset-es2016<br>babel-preset-es2017<br>babel-preset-latest</p>
+<p>需要指定执行环境的Browserlist,康康我的配置。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> browserList = <span class="built_in">require</span>(<span class="string">'./getBrowserslist'</span>);</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">presets:[</span><br><span class="line">    [</span><br><span class="line">        <span class="built_in">require</span>( <span class="string">'@babel/preset-env'</span> ).default,</span><br><span class="line">        &#123;</span><br><span class="line">            targets: &#123; <span class="comment">// 目标环境</span></span><br><span class="line">                browsers: browserList</span><br><span class="line">            &#125;,</span><br><span class="line">            ignoreBrowserslistConfig: <span class="literal">true</span>, <span class="comment">// 忽略browserslist文件配置</span></span><br><span class="line">            <span class="comment">// 使用@babel/plugin-transform-runtime来进行局部传入es6helper和polyfill，不污染全局变量</span></span><br><span class="line">            useBuiltIns: <span class="literal">false</span>,</span><br><span class="line">            modules: <span class="literal">false</span>, <span class="comment">// 是否转译module syntax，默认是 commonjs</span></span><br><span class="line">            debug: <span class="literal">false</span> <span class="comment">// 是否输出启用的plugins列表</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line"><span class="comment">// browserList 文件</span></span><br><span class="line"><span class="comment">// https://github.com/browserslist/browserslist</span></span><br><span class="line"><span class="built_in">module</span>.exports = [ <span class="comment">// 浏览器</span></span><br><span class="line">    <span class="string">'Chrome &gt;= 45'</span>, </span><br><span class="line">    <span class="string">'last 2 Firefox versions'</span>,</span><br><span class="line">    <span class="string">'ie &gt;= 9'</span>, </span><br><span class="line">    <span class="string">'Edge &gt;= 12'</span>,</span><br><span class="line">    <span class="string">'iOS &gt;= 9'</span>, </span><br><span class="line">    <span class="string">'Android &gt;= 4'</span>, </span><br><span class="line">    <span class="string">'last 2 ChromeAndroid versions'</span></span><br><span class="line">];</span><br></pre></td></tr></table></figure></p>
+<h4 id="polyfill"><a href="#polyfill" class="headerlink" title="polyfill"></a>polyfill</h4><p>babel只会用来转换js, 不会转换新的API，@babel/polyfill可以转义所有API但是缺点多多如下。<br>缺点： babel-polyfill 会污染全局变量，给很多类的原型链上都作了修改，如果我们开发的也是一个类库供其他开发者使用，这种情况就会变得非常不可控。并且打包出来会非常大= =。</p>
+<h4 id="runtime"><a href="#runtime" class="headerlink" title="runtime"></a>runtime</h4><p>所以推荐配置 @babel/plugin-transform-runtime, 需要依赖引入@babel/runtime。但是没有转换一些内置的类还有静态方法。通过引入corejs转换一些内置类 (Promise, Symbols等等) 和静态方法 (Array.from 等)。绝大部分转换是这里做的。自动引入。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">plugins: [</span><br><span class="line">    [</span><br><span class="line">        <span class="built_in">require</span>(<span class="string">'@babel/plugin-transform-runtime'</span>).default,</span><br><span class="line">        &#123;</span><br><span class="line">            corejs: <span class="number">3</span>, <span class="comment">// 更高的api支持，需要额外引用corejs-3</span></span><br><span class="line">            helpers: <span class="literal">true</span>, <span class="comment">// 使用moduleName来进行引用</span></span><br><span class="line">            regenerator: <span class="literal">true</span>, <span class="comment">// 转换的api不会污染全局</span></span><br><span class="line">            useESModules: <span class="literal">true</span>, <span class="comment">// 去除commonjs的标识 https://babeljs.io/docs/en/babel-plugin-transform-runtime#useesmodules</span></span><br><span class="line">            absoluteRuntime: <span class="literal">true</span>, <span class="comment">// 使用绝对路径进行模块引用, 用户使用时必须要安装运行时</span></span><br><span class="line">            version: <span class="built_in">require</span>(<span class="string">'@babel/runtime/package.json'</span>).version,</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">],</span><br></pre></td></tr></table></figure></p>
+<h4 id="另外一些细节的插件"><a href="#另外一些细节的插件" class="headerlink" title="另外一些细节的插件"></a>另外一些细节的插件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">require</span>(<span class="string">'@babel/plugin-syntax-dynamic-import'</span>).default,<span class="comment">// 解决webpack异步import语法被错误转换</span></span><br><span class="line">  [</span><br><span class="line">      <span class="built_in">require</span>(<span class="string">'@babel/plugin-proposal-class-properties'</span>).default, <span class="comment">// 针对class中的static做处理</span></span><br><span class="line">      &#123;<span class="attr">loose</span>: <span class="literal">true</span>&#125; <span class="comment">// 不使用defineProperty来对static赋值，而是使用默认赋值方式</span></span><br><span class="line">  ],</span><br></pre></td></tr></table></figure>
+<h3 id="采坑"><a href="#采坑" class="headerlink" title="采坑"></a>采坑</h3><p>另外这次踩了个特别的坑记录下<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// babel</span></span><br><span class="line">    rules.push( &#123;</span><br><span class="line">        test: <span class="regexp">/\.(js|jsx|mjs)$/</span>,</span><br><span class="line">        exclude: <span class="regexp">/(node_modules|bower_components)/</span>,</span><br><span class="line">        use: &#123;</span><br><span class="line">          loader: <span class="built_in">require</span>.resolve(<span class="string">'babel-loader'</span>), <span class="comment">// 划重点</span></span><br><span class="line">          options: babelConfig(),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; );</span><br></pre></td></tr></table></figure></p>
+<p>建议node require引入的方式引入loader(官方解释：使用内部的 require() 机制查询模块的位置)</p>
+<p>如果采用官网普通引入loader的方式：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">use: &#123;</span><br><span class="line">    loader: <span class="string">'babel-loader'</span>,</span><br><span class="line">    options: babelConfig(),</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>用这种写法引入我脚手架的时候会没加载到loader</p>
+
       
     </div>
     
@@ -395,7 +365,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/charles/" rel="tag"># charles</a>
+            <a href="/tags/babel/" rel="tag"># babel</a>
           
         </div>
       
@@ -408,8 +378,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/07/长列表优化/" rel="next" title="长列表优化">
-                <i class="fa fa-chevron-left"></i> 长列表优化
+              <a href="/2019/11/28/commonJS和ES6模块化/" rel="next" title="commonJS和ES6模块化">
+                <i class="fa fa-chevron-left"></i> commonJS和ES6模块化
               </a>
             
           </div>
@@ -417,10 +387,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/30/webpack入门笔记/" rel="prev" title="webpack常用配置摘要">
-                webpack常用配置摘要 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -557,7 +523,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理："><span class="nav-number">2.</span> <span class="nav-text">原理：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要的功能包括："><span class="nav-number">3.</span> <span class="nav-text">主要的功能包括：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Charles-4-新增的主要功能包括："><span class="nav-number">4.</span> <span class="nav-text">Charles 4 新增的主要功能包括：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用场景"><span class="nav-number">5.</span> <span class="nav-text">使用场景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#将charles设置成系统代理"><span class="nav-number">5.1.</span> <span class="nav-text">将charles设置成系统代理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤网络请求"><span class="nav-number">5.2.</span> <span class="nav-text">过滤网络请求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截取iphone的网络封包（常用）"><span class="nav-number">5.3.</span> <span class="nav-text">截取iphone的网络封包（常用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#截取https协议信息"><span class="nav-number">5.4.</span> <span class="nav-text">截取https协议信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模拟慢速网络"><span class="nav-number">5.5.</span> <span class="nav-text">模拟慢速网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改网络请求（常用）"><span class="nav-number">5.6.</span> <span class="nav-text">修改网络请求（常用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#压力测试-略"><span class="nav-number">5.7.</span> <span class="nav-text">压力测试 略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改服务器返回内容（常用）"><span class="nav-number">5.8.</span> <span class="nav-text">修改服务器返回内容（常用）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置外部代理，解决与翻墙软件的冲突"><span class="nav-number">5.9.</span> <span class="nav-text">设置外部代理，解决与翻墙软件的冲突</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#题外话"><span class="nav-number">1.</span> <span class="nav-text">题外话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行方式"><span class="nav-number">2.</span> <span class="nav-text">运行方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#preset-and-plugin"><span class="nav-number">3.</span> <span class="nav-text">preset and plugin</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先说一下他们的执行顺序"><span class="nav-number">3.1.</span> <span class="nav-text">先说一下他们的执行顺序</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译插件"><span class="nav-number">4.</span> <span class="nav-text">编译插件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#env"><span class="nav-number">4.1.</span> <span class="nav-text">env</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#polyfill"><span class="nav-number">4.2.</span> <span class="nav-text">polyfill</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#runtime"><span class="nav-number">4.3.</span> <span class="nav-text">runtime</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#另外一些细节的插件"><span class="nav-number">4.4.</span> <span class="nav-text">另外一些细节的插件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#采坑"><span class="nav-number">5.</span> <span class="nav-text">采坑</span></a></li></ol></div>
             
 
           </div>
