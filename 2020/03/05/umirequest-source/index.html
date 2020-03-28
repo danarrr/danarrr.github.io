@@ -89,7 +89,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/2020/03/05/umirequest-source/umi.png">
 <meta property="og:image" content="http://yoursite.com/2020/03/05/umirequest-source/middleware.png">
-<meta property="og:updated_time" content="2020-03-06T08:59:51.830Z">
+<meta property="og:updated_time" content="2020-03-19T10:36:24.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="请求库源码解读">
 <meta name="twitter:description" content="前言 最近新项目使用到了(基于 fetch 封装)请求库 umirequest, 官网一张对比图眼前一亮。附上之前写的 ajax axios 对比传送门。   先来看看它的优点： 适用于各大业务场景,丰富请求能力。 提供了请求层的常用功能   URL 参数自动序列化 POST 数据提交方式简化 Response 返回处理简化 请求超时处理 请求缓存支持 GBK 编码处理 统一的错误处理方式 请求取">
@@ -381,7 +381,7 @@
 <li>面向<code>多端</code>、<code>多设备</code>应用，umi-request 不仅支持 browser http 请求，也同时满足 node 环境、自定义内核请求等能力。</li>
 </ol>
 <h2 id="引发思考"><a href="#引发思考" class="headerlink" title="引发思考"></a>引发思考</h2><p>这么多网络请求库究竟啥时候学的完？</p>
-<h3 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h3><p>不如来看看他的设计模型，类似于 <code>koa</code> 的洋葱模型的中间件机制:<br>每一层洋葱圈为一个中间件，<code>请求</code>经过一个中间件都会执行两次，开发者可以根据业务需求很方便地实现请求前后增强处理。</p>
+<h3 id="设计理念"><a href="#设计理念" class="headerlink" title="设计理念"></a>设计理念</h3><p>不如来看看他的设计模型，类似于 <code>koa</code> 的洋葱模型的中间件机制:<br>每一层洋葱圈为一个<code>中间件</code>，<code>请求</code>经过一个中间件都会执行两次，开发者可以根据业务需求很方便地实现请求前后增强处理。</p>
 <h3 id="阅读源码"><a href="#阅读源码" class="headerlink" title="阅读源码"></a>阅读源码</h3><p>从三个最常用的功能作为切入点：</p>
 <ul>
 <li>拦截器是如何运作的?</li>
@@ -459,6 +459,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/27/统计用户停留时间方案/" rel="prev" title="统计用户停留时间方案">
+                统计用户停留时间方案 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -540,7 +544,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">14</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -562,7 +566,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
