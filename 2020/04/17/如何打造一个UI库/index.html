@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="说在前面工程化现在基本上是搭建项目的主流了，这里开发的 UI 库参考了 Antdesign的代码设计架构。有优秀成熟的方案不用花费过多的时间去摸索一整套构建方式。  通过调研项目参考源码 -&amp;gt; 参考项目结构如何工程化拆分, 构建方案 -&amp;gt; 前期投入较多时间成本但是后期减少很多痛点。   设计项目先来看下参考 AntDesign 官网项目结构拆分:├── config （ 配置文件 ）│">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何打造一个UI库">
+<meta property="og:url" content="http://yoursite.com/2020/04/17/如何打造一个UI库/index.html">
+<meta property="og:site_name" content="danarrr">
+<meta property="og:description" content="说在前面工程化现在基本上是搭建项目的主流了，这里开发的 UI 库参考了 Antdesign的代码设计架构。有优秀成熟的方案不用花费过多的时间去摸索一整套构建方式。  通过调研项目参考源码 -&amp;gt; 参考项目结构如何工程化拆分, 构建方案 -&amp;gt; 前期投入较多时间成本但是后期减少很多痛点。   设计项目先来看下参考 AntDesign 官网项目结构拆分:├── config （ 配置文件 ）│">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-04-28T08:26:33.975Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="如何打造一个UI库">
+<meta name="twitter:description" content="说在前面工程化现在基本上是搭建项目的主流了，这里开发的 UI 库参考了 Antdesign的代码设计架构。有优秀成熟的方案不用花费过多的时间去摸索一整套构建方式。  通过调研项目参考源码 -&amp;gt; 参考项目结构如何工程化拆分, 构建方案 -&amp;gt; 前期投入较多时间成本但是后期减少很多痛点。   设计项目先来看下参考 AntDesign 官网项目结构拆分:├── config （ 配置文件 ）│">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/04/17/如何打造一个UI库/">
+
+
+
+
+
+  <title>如何打造一个UI库 | danarrr</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">danarrr</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/17/如何打造一个UI库/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="danarrr">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/WechatIMG3.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="danarrr">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">如何打造一个UI库</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-04-17T14:23:22+08:00">
+                2020-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/04/17/如何打造一个UI库/" class="leancloud_visitors" data-flag-title="如何打造一个UI库">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="说在前面"><a href="#说在前面" class="headerlink" title="说在前面"></a>说在前面</h3><p>工程化现在基本上是搭建项目的主流了，这里开发的 UI 库参考了 <code>Antdesign</code>的代码设计架构。有优秀成熟的方案不用花费过多的时间去摸索一整套构建方式。</p>
+<blockquote>
+<p>通过调研项目参考源码 -&gt; 参考项目结构如何工程化拆分, 构建方案 -&gt; 前期投入较多时间成本但是后期减少很多痛点。</p>
+</blockquote>
+<!-- 开发库的时候尽可能多的参考现有的优秀框架的设计架构，有成熟的方案不用花费过多的时间去摸索一整套构建方式，效率会比较高。（因为个人感觉构建方案时效性短,学习成本高受益较小,所以不会投入过多时间成本）。 -->
+<h3 id="设计项目"><a href="#设计项目" class="headerlink" title="设计项目"></a>设计项目</h3><p>先来看下参考 <code>AntDesign</code> 官网项目结构拆分:<br>├── config （ 配置文件 ）<br>│   ├── entry.js (运行命令，自动化生成页面）<br>│   └── readme.js （ 运行命令，编译/components/{md} 生成 html 文件）<br>├── package （npm 包）<br>│   ├── components<br>│   ├── index.ts<br>│   ├── style<br>│   ├── svgs （ icons 库图标 ）<br>│   └── utils（ 公共文件 ）<br>├── src （ 潭州课堂-UI 库官网界面）<br>│   ├── main.ts<br>│   └── views （ 页面 ）</p>
+<blockquote>
+<p>主要拆分成核心的三个部分:</p>
+</blockquote>
+<ol>
+<li>官网界面 ./src</li>
+</ol>
+<ul>
+<li>包括了组件的介绍文档</li>
+<li>组件的使用示例</li>
+</ul>
+<ol start="2">
+<li>组件 npm 包 ./package</li>
+</ol>
+<ul>
+<li>基础组件</li>
+<li>全局组件/指令，例如 Message</li>
+<li>svg 文件导出</li>
+</ul>
+<ol start="3">
+<li>自动化配置文件 ./config</li>
+</ol>
+<ul>
+<li>编译组件介绍文档(markdown 文件), 并插入官网界面。</li>
+<li>自动化新增组件：包括新增 npm 包，官网介绍页，增加对应路由。</li>
+</ul>
+<h3 id="编写一个组件"><a href="#编写一个组件" class="headerlink" title="编写一个组件"></a>编写一个组件</h3><blockquote>
+<p>基于 vue 编写的组件库, 例如编写一个<code>BreadCrumb</code>面包屑组件，主要是分成三个部分。</p>
+</blockquote>
+<h4 id="组件代码-BreadCrumb-vue"><a href="#组件代码-BreadCrumb-vue" class="headerlink" title="组件代码 BreadCrumb.vue"></a>组件代码 BreadCrumb.vue</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;div class=&quot;gz__breadcrumb&quot;&gt;</span><br><span class="line">    &lt;span</span><br><span class="line">      v-for=&quot;(item, index) in steps&quot;</span><br><span class="line">      :key=&quot;index&quot;</span><br><span class="line">      class=&quot;gz__breadcrumb-item&quot;</span><br><span class="line">      @click=&quot;toLink(item)&quot;</span><br><span class="line">    &gt;</span><br><span class="line">      &#123;&#123; item.name &#125;&#125;</span><br><span class="line">      &lt;i class=&quot;gz__breadcrumb-sep&quot;&gt;</span><br><span class="line">        &lt;slot&gt;&lt;/slot&gt;</span><br><span class="line">      &lt;/i&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">  &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script lang=&quot;ts&quot;&gt;</span><br><span class="line">import &#123; Component, Vue, Prop, Provide &#125; from &quot;vue-property-decorator&quot;;</span><br><span class="line"></span><br><span class="line">@Component(&#123;</span><br><span class="line">  name: &quot;GzBreadcrumb&quot;,</span><br><span class="line">&#125;)</span><br><span class="line">export default class GzBreadcrumb extends Vue &#123;</span><br><span class="line">  @Prop(&#123; type: Array &#125;) private steps!: any;</span><br><span class="line"></span><br><span class="line">  toLink(item) &#123;</span><br><span class="line">    return item.callback ? item.callback() : &quot;&quot;;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="样式处理"><a href="#样式处理" class="headerlink" title="样式处理"></a>样式处理</h4><p>拆分成独立文件</p>
+<h4 id="组件注册文件"><a href="#组件注册文件" class="headerlink" title="组件注册文件"></a>组件注册文件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> BreadCrumb <span class="keyword">from</span> <span class="string">"./src/BreadCrumb.vue"</span>;</span><br><span class="line"></span><br><span class="line">BreadCrumb.install = <span class="function"><span class="keyword">function</span> (<span class="params">Vue</span>) </span>&#123;</span><br><span class="line">  Vue.component(BreadCrumb.name, BreadCrumb);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> BreadCrumb;</span><br></pre></td></tr></table></figure>
+<h4 id="组件库-npm-的入口文件，导出所有的组件"><a href="#组件库-npm-的入口文件，导出所有的组件" class="headerlink" title="组件库 npm 的入口文件，导出所有的组件"></a>组件库 npm 的入口文件，导出所有的组件</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> BreadCrumb <span class="keyword">from</span> <span class="string">"./components/BreadCrumb"</span>;</span><br><span class="line"><span class="keyword">import</span> Button <span class="keyword">from</span> <span class="string">"./components/Button"</span>;</span><br><span class="line"><span class="keyword">import</span> Checkbox <span class="keyword">from</span> <span class="string">"./components/Checkbox"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> components = &#123;</span><br><span class="line">  BreadCrumb,</span><br><span class="line">  Button,</span><br><span class="line">  Checkbox,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> install = <span class="function"><span class="keyword">function</span> (<span class="params">Vue, opts = &#123;&#125;</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">Object</span>.keys(components).forEach(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">    Vue.component(components[key].name, components[key]);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">typeof</span> <span class="built_in">window</span> !== <span class="string">"undefined"</span> &amp;&amp; <span class="built_in">window</span>.Vue) &#123;</span><br><span class="line">  install(<span class="built_in">window</span>.Vue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> GzBreadCrumb = BreadCrumb;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> GzButton = Button;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> GzCheckbox = Checkbox;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  version: <span class="string">"0.1.0"</span>,</span><br><span class="line">  install,</span><br><span class="line">  ...components,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h4 id="其他组件"><a href="#其他组件" class="headerlink" title="其他组件"></a>其他组件</h4><p>到这一步之前，只是编写了一个最简易的组件，实际开发中还会遇到其他特殊的组件，比如：</p>
+<ol>
+<li>公共的指令调用</li>
+<li>button 组件里如何内嵌 icon</li>
+<li>如何编写基建组件，比如编写一个<code>Model</code>弹层组件用来可以支持<code>Message`</code>Alert `组件, 尽量考虑到组件的扩展性。<br>等等。。</li>
+</ol>
+<h3 id="打包编译方式"><a href="#打包编译方式" class="headerlink" title="打包编译方式"></a>打包编译方式</h3><h4 id="打包工具"><a href="#打包工具" class="headerlink" title="打包工具"></a>打包工具</h4><blockquote>
+<p>最终我选用了<code>rollup</code>打包编译组件库，调研以及实践结果如下：</p>
+</blockquote>
+<pre><code>1. rollup / gulp: rollup 对vue的打包更友好，生态圈完善，因为我使用了vue-prototype这个插件编写ts,gulp无法编译。
+2. react编写ui库的话建议还是用gulp打包。
+3. webpack / rollup: webpack更适用于打包业务项目Library，webpack在分模块打包这块做的更精致。rollup是适用于打包开源组件库，rollup主打打出更轻量级的包，主要功臣还是tree-shaking（尽管webpack2也已经用上tree-shaking)。
+</code></pre><h4 id="处理-svg"><a href="#处理-svg" class="headerlink" title="处理 svg"></a>处理 svg</h4><p>实现 <code>svg sprite</code>, 首先要了解 svg 的两种基本使用方式。</p>
+<ol>
+<li>在 html 中插入具体的 svg 文件。</li>
+<li>在 html 文档前就先引入所有 svg 文件，在使用时直接加上对应 id 名即可。</li>
+</ol>
+<p>svgSprite 实现思路如下：</p>
+<ol>
+<li>配置 <code>rollup</code>，使用 <code>rollup-plugin-svg-icons</code> 插件导入所有的 svg 文件。webpack 可以直接使用 requireAll Api 导入所有的 svg 文件。</li>
+<li>把生成的 svg 总文件插入文档流。<br>这样就可以完美支持自己写的<gz-icon>组件了，使用时只需要添加 svg 文件 id 名就可以使用了。</gz-icon></li>
+</ol>
+<h4 id="处理-scss"><a href="#处理-scss" class="headerlink" title="处理 scss"></a>处理 scss</h4><p>这里的方案是单独引入。</p>
+<h4 id="处理单个组件按需加载"><a href="#处理单个组件按需加载" class="headerlink" title="处理单个组件按需加载"></a>处理单个组件按需加载</h4><blockquote>
+<p>要注意的是打包方式，如果是用打包成 umd 的方式是不建议用来打包 ui 库的，umd 导出一个闭包组件不方便扩展。<br>起 node 服务运行多个 rollup 编译(webpack 同理)，打包出多份类型文件，支持按需导入。</p>
+</blockquote>
+<p>ps: 打包编译方式千千万，万一谷歌那天就全兼容了呢，学习成本高利益最小化，所以个人观点不做深纠。但是也要了解打包原理</p>
+<h4 id="单元测试使用"><a href="#单元测试使用" class="headerlink" title="单元测试使用"></a>单元测试使用</h4><p>jest</p>
+<h3 id="自动化"><a href="#自动化" class="headerlink" title="自动化"></a>自动化</h3><p>node IO 真是个好东西，节省了很多工作量。<br>这里我主要加了两个自动化的小功能:</p>
+<ul>
+<li>自动编译 markdown。</li>
+<li>新增组件自动化生成文件。</li>
+</ul>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>开发一个自己团队的 UI 库是为了解决一些痛点：比如使用第三方库不够自定义化，有时候会不方便扩展功能及样式，另一个方面还可以加上打点日志统计。<br>另外一个是要多思考，之前做外包印象最深就是重复工作太多，没有多思考抽离一些功能做自动化。</p>
+<p>That’s All, Bye.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/08/TS真香/" rel="next" title="TS真香">
+                <i class="fa fa-chevron-left"></i> TS真香
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+  <div id="gitalk-container"></div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/WechatIMG3.jpeg" alt="danarrr">
+            
+              <p class="site-author-name" itemprop="name">danarrr</p>
+              <p class="site-description motion-element" itemprop="description">前端开发 danarrr</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#说在前面"><span class="nav-number">1.</span> <span class="nav-text">说在前面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设计项目"><span class="nav-number">2.</span> <span class="nav-text">设计项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编写一个组件"><span class="nav-number">3.</span> <span class="nav-text">编写一个组件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#组件代码-BreadCrumb-vue"><span class="nav-number">3.1.</span> <span class="nav-text">组件代码 BreadCrumb.vue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样式处理"><span class="nav-number">3.2.</span> <span class="nav-text">样式处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件注册文件"><span class="nav-number">3.3.</span> <span class="nav-text">组件注册文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组件库-npm-的入口文件，导出所有的组件"><span class="nav-number">3.4.</span> <span class="nav-text">组件库 npm 的入口文件，导出所有的组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#其他组件"><span class="nav-number">3.5.</span> <span class="nav-text">其他组件</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#打包编译方式"><span class="nav-number">4.</span> <span class="nav-text">打包编译方式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#打包工具"><span class="nav-number">4.1.</span> <span class="nav-text">打包工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理-svg"><span class="nav-number">4.2.</span> <span class="nav-text">处理 svg</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理-scss"><span class="nav-number">4.3.</span> <span class="nav-text">处理 scss</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理单个组件按需加载"><span class="nav-number">4.4.</span> <span class="nav-text">处理单个组件按需加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#单元测试使用"><span class="nav-number">4.5.</span> <span class="nav-text">单元测试使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自动化"><span class="nav-number">5.</span> <span class="nav-text">自动化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">5.1.</span> <span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">danarrr</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: 'a89fb921b61c205fb969',
+      clientSecret: '695821a0cf385443288a792e73a848828fa4ac85',
+      repo: 'gitment-comments',
+      owner: 'danarrr',
+      admin: ['danarrr'],
+      id: location.pathname,
+      distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("YxLpfWk87H2wrsTa7itj8aDU-gzGzoHsz", "HKspigezr7cj9VCz1WFqdo61");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
