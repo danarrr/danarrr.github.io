@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="算法 vue vue-route,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="什么是 LRU 算法 其实就是一种缓存淘汰策略，在内存有限的情况下，淘汰最近且最少使用的数据或者页面。  缓存在计算机网络经常看到，比如首次打开一个网页，加载会非常缓慢，第二次打开就会加速了。 这就是 LRU 算法在浏览器上的应用，说几种比较常见的淘汰策略，比如 FIFO(先进先出)、LFU(最少使用)、LRU(最近最少使用)。 用图示来解释一下页面的 LRU 实现逻辑 假设下面第一行的数字是页面">
+<meta name="keywords" content="算法 vue vue-route">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LRU缓存淘汰算法">
+<meta property="og:url" content="http://yoursite.com/2020/05/06/LRU缓存淘汰算法/index.html">
+<meta property="og:site_name" content="danarrr">
+<meta property="og:description" content="什么是 LRU 算法 其实就是一种缓存淘汰策略，在内存有限的情况下，淘汰最近且最少使用的数据或者页面。  缓存在计算机网络经常看到，比如首次打开一个网页，加载会非常缓慢，第二次打开就会加速了。 这就是 LRU 算法在浏览器上的应用，说几种比较常见的淘汰策略，比如 FIFO(先进先出)、LFU(最少使用)、LRU(最近最少使用)。 用图示来解释一下页面的 LRU 实现逻辑 假设下面第一行的数字是页面">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-19T02:13:29.028Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LRU缓存淘汰算法">
+<meta name="twitter:description" content="什么是 LRU 算法 其实就是一种缓存淘汰策略，在内存有限的情况下，淘汰最近且最少使用的数据或者页面。  缓存在计算机网络经常看到，比如首次打开一个网页，加载会非常缓慢，第二次打开就会加速了。 这就是 LRU 算法在浏览器上的应用，说几种比较常见的淘汰策略，比如 FIFO(先进先出)、LFU(最少使用)、LRU(最近最少使用)。 用图示来解释一下页面的 LRU 实现逻辑 假设下面第一行的数字是页面">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/05/06/LRU缓存淘汰算法/">
+
+
+
+
+
+  <title>LRU缓存淘汰算法 | danarrr</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">danarrr</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/06/LRU缓存淘汰算法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="danarrr">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/WechatIMG3.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="danarrr">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">LRU缓存淘汰算法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-06T14:47:05+08:00">
+                2020-05-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/05/06/LRU缓存淘汰算法/" class="leancloud_visitors" data-flag-title="LRU缓存淘汰算法">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="什么是-LRU-算法"><a href="#什么是-LRU-算法" class="headerlink" title="什么是 LRU 算法"></a>什么是 LRU 算法</h3><blockquote>
+<p>其实就是一种缓存淘汰策略，在内存有限的情况下，淘汰最近且最少使用的数据或者页面。</p>
+</blockquote>
+<p>缓存在计算机网络经常看到，比如首次打开一个网页，加载会非常缓慢，第二次打开就会加速了。</p>
+<p>这就是 LRU 算法在浏览器上的应用，<br>说几种比较常见的淘汰策略，比如 <code>FIFO(先进先出)</code>、<code>LFU(最少使用)</code>、<code>LRU(最近最少使用)</code>。</p>
+<h3 id="用图示来解释一下页面的-LRU-实现逻辑"><a href="#用图示来解释一下页面的-LRU-实现逻辑" class="headerlink" title="用图示来解释一下页面的 LRU 实现逻辑"></a>用图示来解释一下页面的 LRU 实现逻辑</h3><ul>
+<li>假设下面第一行的数字是页面 ID, 尝试下用户的网页浏览路径，假设页面缓存的长度 this.max 为 3.</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span><span class="number">-2</span><span class="number">-3</span><span class="number">-4</span><span class="number">-1</span><span class="number">-2</span><span class="number">-1</span></span><br><span class="line"><span class="number">1</span> <span class="number">1</span> <span class="number">1</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">4</span></span><br><span class="line">  <span class="number">2</span> <span class="number">2</span> <span class="number">3</span> <span class="number">4</span> <span class="number">1</span> <span class="number">2</span></span><br><span class="line">    <span class="number">3</span> <span class="number">4</span> <span class="number">1</span> <span class="number">2</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>划重点： 最后一个值永远都是最近且最最常使用的页面 ID 。</p>
+<h3 id="源码应用"><a href="#源码应用" class="headerlink" title="源码应用"></a>源码应用</h3><p>介绍完 LRU 的实现思路后，来探讨下实战的使用场景</p>
+<blockquote>
+<p>Vue 的 keep-alive Api 的实现，官网<keep-alive>用来缓存组件或页面。</keep-alive></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 失活的组件将会被缓存！--&gt;</span><br><span class="line">&lt;keep-alive&gt;</span><br><span class="line">  &lt;component v-bind:is=<span class="string">"currentTabComponent"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">component</span>&gt;</span></span></span><br><span class="line">&lt;<span class="regexp">/keep-alive&gt;</span></span><br></pre></td></tr></table></figure>
+<p>来看下具体实现, keep-alive 源码地址：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 看下淘汰算法的核心部分</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  name: <span class="string">"keep-alive"</span>,</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">const</span> slot = <span class="keyword">this</span>.$slots.default;</span><br><span class="line">    <span class="keyword">const</span> vnode: VNode = getFirstComponentChild(slot);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> &#123; cache, keys &#125; = <span class="keyword">this</span>;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">      cache 用来存储浏览过的Vnode</span></span><br><span class="line"><span class="comment">    **/</span></span><br><span class="line">    <span class="keyword">if</span> (cache[key]) &#123;</span><br><span class="line">      <span class="comment">// 如果当前缓存栈中已经存在, 则删除并重新将节点push进cache中</span></span><br><span class="line">      vnode.componentInstance = cache[key].componentInstance;</span><br><span class="line">      remove(keys, key);</span><br><span class="line">      keys.push(key);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="comment">// 如果不存在，则将新增节点添加到数组最后一位</span></span><br><span class="line">      cache[key] = vnode;</span><br><span class="line">      keys.push(key);</span><br><span class="line">      <span class="comment">// 如果超过栈堆最大值, 则移除最旧的数据</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.max &amp;&amp; keys.length &gt; <span class="built_in">parseInt</span>(<span class="keyword">this</span>.max)) &#123;</span><br><span class="line">        pruneCacheEntry(cache, keys[<span class="number">0</span>], keys, <span class="keyword">this</span>._vnode);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// keepAlive标记位</span></span><br><span class="line">    vnode.data.keepAlive = <span class="literal">true</span>;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 即是保持着cache最后一位数据永远都是最新且最常使用的</span></span><br></pre></td></tr></table></figure>
+<p>主要实现这三个内容：</p>
+<ol>
+<li>如果缓存内存<code>this.cache</code>不存在用户现正访问的 tab，则将新浏览的 tab Node 节点保存到 key 值中，并添加到<code>this.cache</code>最后一位.</li>
+<li>如果缓存内存<code>this.cache</code>存在用户现正访问的 tab，则找出这个节点的 key 删除，并添加新的内容。</li>
+<li>如果超过缓存内存的最大值<code>this.max</code>, 则从<code>this.cache</code>开始淘汰最久最少使用的数据</li>
+</ol>
+<h3 id="leetcode-实战"><a href="#leetcode-实战" class="headerlink" title="leetcode 实战"></a>leetcode 实战</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">LRUCache cache = <span class="keyword">new</span> LRUCache( <span class="number">2</span> <span class="comment">/* 缓存容量 */</span> );</span><br><span class="line"></span><br><span class="line">cache.put(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">cache.put(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line">cache.get(<span class="number">1</span>);       <span class="comment">// 返回  1</span></span><br><span class="line">cache.put(<span class="number">3</span>, <span class="number">3</span>);    <span class="comment">// 该操作会使得密钥 2 作废</span></span><br><span class="line">cache.get(<span class="number">2</span>);       <span class="comment">// 返回 -1 (未找到)</span></span><br><span class="line">cache.put(<span class="number">4</span>, <span class="number">4</span>);    <span class="comment">// 该操作会使得密钥 1 作废</span></span><br><span class="line">cache.get(<span class="number">1</span>);       <span class="comment">// 返回 -1 (未找到)</span></span><br><span class="line">cache.get(<span class="number">3</span>);       <span class="comment">// 返回  3</span></span><br><span class="line">cache.get(<span class="number">4</span>);       <span class="comment">// 返回  4</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>题解析，put 函数里的参数可以看做是页面的 key 值与 Node 内容。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> LRUCache = <span class="function"><span class="keyword">function</span> (<span class="params">capacity</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.cache = <span class="keyword">new</span> <span class="built_in">Map</span>();</span><br><span class="line">  <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">LRUCache.prototype.get = <span class="function"><span class="keyword">function</span> (<span class="params">key</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.cache.has(key)) &#123;</span><br><span class="line">    <span class="comment">// 存在即更新</span></span><br><span class="line">    <span class="keyword">let</span> temp = <span class="keyword">this</span>.cache.get(key);</span><br><span class="line">    <span class="keyword">this</span>.cache.delete(key);</span><br><span class="line">    <span class="keyword">this</span>.cache.set(key, temp);</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">LRUCache.prototype.put = <span class="function"><span class="keyword">function</span> (<span class="params">key, value</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">this</span>.cache.has(key)) &#123;</span><br><span class="line">    <span class="comment">// 存在即更新（删除后加入）</span></span><br><span class="line">    <span class="keyword">this</span>.cache.delete(key);</span><br><span class="line">  &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.cache.size &gt;= <span class="keyword">this</span>.capacity) &#123;</span><br><span class="line">    <span class="comment">// 不存在即加入</span></span><br><span class="line">    <span class="comment">// 缓存超过最大值，则移除最近没有使用的</span></span><br><span class="line">    <span class="keyword">this</span>.cache.delete(<span class="keyword">this</span>.cache.keys().next().value);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.cache.set(key, value);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="其他应用场景，还可以使用在哪里"><a href="#其他应用场景，还可以使用在哪里" class="headerlink" title="其他应用场景，还可以使用在哪里"></a>其他应用场景，还可以使用在哪里</h3><ul>
+<li>常用的本地缓存： cookie indexDB localstorage</li>
+<li>redis</li>
+</ul>
+<p>完。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法-vue-vue-route/" rel="tag"># 算法 vue vue-route</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/04/17/如何打造一个UI库/" rel="next" title="如何打造一个UI库">
+                <i class="fa fa-chevron-left"></i> 如何打造一个UI库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+  <div id="gitalk-container"></div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/WechatIMG3.jpeg" alt="danarrr">
+            
+              <p class="site-author-name" itemprop="name">danarrr</p>
+              <p class="site-description motion-element" itemprop="description">前端开发 danarrr</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-LRU-算法"><span class="nav-number">1.</span> <span class="nav-text">什么是 LRU 算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用图示来解释一下页面的-LRU-实现逻辑"><span class="nav-number">2.</span> <span class="nav-text">用图示来解释一下页面的 LRU 实现逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#源码应用"><span class="nav-number">3.</span> <span class="nav-text">源码应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#leetcode-实战"><span class="nav-number">4.</span> <span class="nav-text">leetcode 实战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他应用场景，还可以使用在哪里"><span class="nav-number">5.</span> <span class="nav-text">其他应用场景，还可以使用在哪里</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">danarrr</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: 'a89fb921b61c205fb969',
+      clientSecret: '695821a0cf385443288a792e73a848828fa4ac85',
+      repo: 'gitment-comments',
+      owner: 'danarrr',
+      admin: ['danarrr'],
+      id: location.pathname,
+      distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("YxLpfWk87H2wrsTa7itj8aDU-gzGzoHsz", "HKspigezr7cj9VCz1WFqdo61");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+  <script type="text/javascript" src="/js/src/js.cookie.js?v=5.1.4"></script>
+  <script type="text/javascript" src="/js/src/scroll-cookie.js?v=5.1.4"></script>
+
+
+  
+
+</body>
+</html>
