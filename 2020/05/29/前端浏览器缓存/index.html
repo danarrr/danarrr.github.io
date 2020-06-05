@@ -79,16 +79,17 @@
 
 
 
-<meta name="description" content="前端开发 danarrr">
-<meta property="og:type" content="website">
-<meta property="og:title" content="danarrr">
-<meta property="og:url" content="http://yoursite.com/archives/2020/02/index.html">
+<meta name="description" content="HTTP 头部信息控制缓存大致分为两种： 强缓存和协商缓存强缓存： 如果命中缓存，则不需要继续和服务器进行通信协商缓存： 不管命不命中 都要进行通信 强制缓存： 可以理解为无需验证的强缓存策略，对强缓存来说，在响应头中看到强缓存的标识  expiresexpires Cache-Control会给配置值 max-age 代表最后的相对时间，举例设置有效期是 3600 秒 那么就是有效时长可以强制设">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端浏览器缓存">
+<meta property="og:url" content="http://yoursite.com/2020/05/29/前端浏览器缓存/index.html">
 <meta property="og:site_name" content="danarrr">
-<meta property="og:description" content="前端开发 danarrr">
+<meta property="og:description" content="HTTP 头部信息控制缓存大致分为两种： 强缓存和协商缓存强缓存： 如果命中缓存，则不需要继续和服务器进行通信协商缓存： 不管命不命中 都要进行通信 强制缓存： 可以理解为无需验证的强缓存策略，对强缓存来说，在响应头中看到强缓存的标识  expiresexpires Cache-Control会给配置值 max-age 代表最后的相对时间，举例设置有效期是 3600 秒 那么就是有效时长可以强制设">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2020-05-29T09:21:59.812Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="danarrr">
-<meta name="twitter:description" content="前端开发 danarrr">
+<meta name="twitter:title" content="前端浏览器缓存">
+<meta name="twitter:description" content="HTTP 头部信息控制缓存大致分为两种： 强缓存和协商缓存强缓存： 如果命中缓存，则不需要继续和服务器进行通信协商缓存： 不管命不命中 都要进行通信 强制缓存： 可以理解为无需验证的强缓存策略，对强缓存来说，在响应头中看到强缓存的标识  expiresexpires Cache-Control会给配置值 max-age 代表最后的相对时间，举例设置有效期是 3600 秒 那么就是有效时长可以强制设">
 
 
 
@@ -118,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/archives/2020/02/">
+  <link rel="canonical" href="http://yoursite.com/2020/05/29/前端浏览器缓存/">
 
 
 
 
 
-  <title>归档 | danarrr</title>
+  <title>前端浏览器缓存 | danarrr</title>
   
 
 
@@ -143,7 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -237,72 +238,165 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
-
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        嗯..! 目前共计 19 篇日志。 继续努力。
-      </span>
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
-
-        
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/05/29/前端浏览器缓存/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="danarrr">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/WechatIMG3.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="danarrr">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/02/20/初次接触babel7/" itemprop="url">
-              
-                <span itemprop="name">初次接触babel7</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">前端浏览器缓存</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-02-20T11:58:48+08:00" content="2020-02-20">
-          02-20
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-05-29T15:44:29+08:00">
+                2020-05-29
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
 
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2020/05/29/前端浏览器缓存/" class="leancloud_visitors" data-flag-title="前端浏览器缓存">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        <p>HTTP 头部信息控制缓存<br>大致分为两种： 强缓存和协商缓存<br>强缓存： 如果命中缓存，则不需要继续和服务器进行通信<br>协商缓存： 不管命不命中 都要进行通信</p>
+<p>强制缓存： 可以理解为无需验证的强缓存策略，对强缓存来说，在响应头中看到强缓存的标识</p>
+<ul>
+<li>expires<br>expires</li>
+<li>Cache-Control<br>会给配置值 max-age 代表最后的相对时间，举例设置有效期是 3600 秒 那么就是有效时长<br>可以强制设置不缓存 no-store</li>
+</ul>
+<p>协商缓存<br>如果没有命中强制缓存，浏览器会发送请求到服务器, 请求会响应头新型</p>
+<ul>
+<li><p>last-modified:记录最后修改的时间，启用强制缓存， 当再次请求资源的时候请求头会带上 if-modified-since 字段, 如果和之前返回的 last-modified 的值相同，则会告诉浏览器直接使用缓存并返回 304 标识符是最后更新时间</p>
+</li>
+<li><p>etag 的标识符是根据资源内容生成的一窜编码 缺点 生成标识符会增加服务器开销 优点 更加精准</p>
+</li>
+</ul>
+<p>机制、 整一个流程<br>强缓存优先 协商缓存 、 服务器重新获取资源</p>
+
+      
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/05/19/手写一个Promise/" rel="next" title="手写一个Promise">
+                <i class="fa fa-chevron-left"></i> 手写一个Promise
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -310,6 +404,13 @@
 
 
           
+
+  
+  <div id="gitalk-container"></div>
+
+  
+
+
 
         </div>
         
@@ -533,6 +634,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -571,6 +676,22 @@
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+    var gitalk = new Gitalk({
+      clientID: 'a89fb921b61c205fb969',
+      clientSecret: '695821a0cf385443288a792e73a848828fa4ac85',
+      repo: 'gitment-comments',
+      owner: 'danarrr',
+      admin: ['danarrr'],
+      id: location.pathname,
+      distractionFreeMode: 'false'
+    })
+    gitalk.render('gitalk-container')
+  </script>
 
 
 
