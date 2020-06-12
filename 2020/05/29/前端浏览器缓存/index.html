@@ -79,17 +79,14 @@
 
 
 
-<meta name="description" content="HTTP 头部信息控制缓存大致分为两种： 强缓存和协商缓存强缓存： 如果命中缓存，则不需要继续和服务器进行通信协商缓存： 不管命不命中 都要进行通信 强制缓存： 可以理解为无需验证的强缓存策略，对强缓存来说，在响应头中看到强缓存的标识  expiresexpires Cache-Control会给配置值 max-age 代表最后的相对时间，举例设置有效期是 3600 秒 那么就是有效时长可以强制设">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前端浏览器缓存">
 <meta property="og:url" content="http://yoursite.com/2020/05/29/前端浏览器缓存/index.html">
 <meta property="og:site_name" content="danarrr">
-<meta property="og:description" content="HTTP 头部信息控制缓存大致分为两种： 强缓存和协商缓存强缓存： 如果命中缓存，则不需要继续和服务器进行通信协商缓存： 不管命不命中 都要进行通信 强制缓存： 可以理解为无需验证的强缓存策略，对强缓存来说，在响应头中看到强缓存的标识  expiresexpires Cache-Control会给配置值 max-age 代表最后的相对时间，举例设置有效期是 3600 秒 那么就是有效时长可以强制设">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-05-29T09:21:59.812Z">
+<meta property="og:updated_time" content="2020-06-05T10:20:52.011Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前端浏览器缓存">
-<meta name="twitter:description" content="HTTP 头部信息控制缓存大致分为两种： 强缓存和协商缓存强缓存： 如果命中缓存，则不需要继续和服务器进行通信协商缓存： 不管命不命中 都要进行通信 强制缓存： 可以理解为无需验证的强缓存策略，对强缓存来说，在响应头中看到强缓存的标识  expiresexpires Cache-Control会给配置值 max-age 代表最后的相对时间，举例设置有效期是 3600 秒 那么就是有效时长可以强制设">
 
 
 
@@ -330,20 +327,29 @@
       
 
       
-        <p>HTTP 头部信息控制缓存<br>大致分为两种： 强缓存和协商缓存<br>强缓存： 如果命中缓存，则不需要继续和服务器进行通信<br>协商缓存： 不管命不命中 都要进行通信</p>
-<p>强制缓存： 可以理解为无需验证的强缓存策略，对强缓存来说，在响应头中看到强缓存的标识</p>
-<ul>
-<li>expires<br>expires</li>
-<li>Cache-Control<br>会给配置值 max-age 代表最后的相对时间，举例设置有效期是 3600 秒 那么就是有效时长<br>可以强制设置不缓存 no-store</li>
-</ul>
-<p>协商缓存<br>如果没有命中强制缓存，浏览器会发送请求到服务器, 请求会响应头新型</p>
-<ul>
-<li><p>last-modified:记录最后修改的时间，启用强制缓存， 当再次请求资源的时候请求头会带上 if-modified-since 字段, 如果和之前返回的 last-modified 的值相同，则会告诉浏览器直接使用缓存并返回 304 标识符是最后更新时间</p>
-</li>
-<li><p>etag 的标识符是根据资源内容生成的一窜编码 缺点 生成标识符会增加服务器开销 优点 更加精准</p>
-</li>
-</ul>
-<p>机制、 整一个流程<br>强缓存优先 协商缓存 、 服务器重新获取资源</p>
+        <!--
+HTTP 头部信息控制缓存
+大致分为两种： 强缓存和协商缓存
+强缓存： 如果命中缓存，则不需要继续和服务器进行通信
+协商缓存： 不管命不命中 都要进行通信
+
+强制缓存： 可以理解为无需验证的强缓存策略，对强缓存来说，在响应头中看到强缓存的标识
+
+- expires
+  expires
+- Cache-Control
+  会给配置值 max-age 代表最后的相对时间，举例设置有效期是 3600 秒 那么就是有效时长
+  可以强制设置不缓存 no-store
+
+协商缓存
+如果没有命中强制缓存，浏览器会发送请求到服务器, 请求会响应头新型
+
+- last-modified:记录最后修改的时间，启用强制缓存， 当再次请求资源的时候请求头会带上 if-modified-since 字段, 如果和之前返回的 last-modified 的值相同，则会告诉浏览器直接使用缓存并返回 304 标识符是最后更新时间
+
+- etag 的标识符是根据资源内容生成的一窜编码 缺点 生成标识符会增加服务器开销 优点 更加精准
+
+机制、 整一个流程
+强缓存优先 协商缓存 、 服务器重新获取资源 -->
 
       
     </div>
@@ -377,6 +383,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/08/描述下从输入URL到整个页面展示的过程/" rel="prev" title="描述下从输入URL到整个页面展示的过程">
+                描述下从输入URL到整个页面展示的过程 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -449,7 +459,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">20</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
