@@ -89,7 +89,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/12/14/性能优化宏观篇/cache.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/12/14/性能优化宏观篇/spa.jpg">
 <meta property="og:image" content="http://yoursite.com/2020/12/14/性能优化宏观篇/performanceentry.png">
-<meta property="og:updated_time" content="2020-12-14T11:58:58.023Z">
+<meta property="og:updated_time" content="2020-12-15T07:20:23.468Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="性能优化宏观篇">
 <meta name="twitter:description" content="优化 所有的优化前提都需要具体的参数指标，例 FP,FCP,FMP,TTI(用户可以交互的时间点)   最优指标: 首屏 FMP 在一秒内完成，并且成功率达到 80%以上   性能优化 网络优化  把输入网址 url 到页面展示的过程作为时间轴，去分析优化 dns（通过域名查找 IP 地址，也是网络协议） =&amp;gt; tcp =&amp;gt; http/ssl =&amp;gt; 响应 =&amp;gt; 浏览器渲染">
@@ -358,7 +358,7 @@
 <p>解决方案：</p>
 <ol>
 <li>分片</li>
-<li>慢启动（让网络包的大小去匹配网速带宽，node）@todo 咋实现的<br>如果只是普通的请求，还可以基于 tcp 去定制 client 和 serve。@todo</li>
+<li>慢启动策略（让网络包的大小去匹配网速带宽，node）@todo 可以用 node 去尝试实现<br>如果只是普通的请求，还可以基于 tcp 去定制 client 和 serve。</li>
 </ol>
 <h5 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h5><p>大致内容：<br>methods 请求连接 host http 版本<br>key: value<br>key: value<br>body</p>
 <p>优化方式：</p>
@@ -383,11 +383,11 @@
 <p>不经常改变的文件:<br>给 max-age 设置一个较大的值，一般设置 max-age=31536000</p>
 <p>可能经常需要变动的文件:<br>Cache-Control: no-cache / max-age=0 2. http2 多路复用</p>
 <ol start="2">
-<li>网络请求的优化<br>【分布式】 当客户端在全国各地去访问服务器时，带宽不同且距离相差甚远的 情况下，请求速度过慢，所以需要分布式在多个地点有自己的服务器，减带宽加速请求响应速度。<br>【负载均衡】<br>【储备】（当某个服务器机子挂掉，有备用服务器储备）</li>
+<li>网络请求的优化<br>【分布式/cdn】 当客户端在全国各地去访问服务器时，链路距离不等情况下，可以通过 dns 去分配距离客户端最近的机房的 ip,所以需要分布式在多个地点有自己的服务器/机房，加速请求响应速度。<br>【负载均衡】@todo<br>【储备】（当某个服务器机子挂掉，有备用服务器储备，更自动化的是 <code>nginx</code> 可以自动分配下一个服务器）</li>
 </ol>
-<h5 id="响应报文-SPA-SSR"><a href="#响应报文-SPA-SSR" class="headerlink" title="响应报文 SPA SSR"></a>响应报文 SPA SSR</h5><p>拿到响应 html 文件怎么处理？<br>1.SPA 项目（React,vue)查看源码的时候主体内容为空 <code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code>,逻辑都在 js。所以会出现首屏白屏的问题。<img src="/2020/12/14/性能优化宏观篇/spa.jpg" alt=""></p>
+<h5 id="响应报文-SPA-SSR"><a href="#响应报文-SPA-SSR" class="headerlink" title="响应报文 SPA SSR"></a>响应报文 SPA SSR</h5><p>拿到响应 html 文件怎么处理？<br>1.SPA 项目（React,vue)查看源码的时候主体内容为空 <code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code>,逻辑都在 js。所以会出现首屏白屏的问题。<br><img src="/2020/12/14/性能优化宏观篇/spa.jpg" alt=""><br>举例解决策略：vue2 vue-serve-render 渲染器，可以解决在首屏渲染在<code>&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</code>中手动渲染代码。</p>
 <p>2.同构 SSR（提高首屏的速度，seo 利于爬虫，后续是单页的逻辑）<br>原理：启动了一个 node 服务，在 node 中执行渲染，再返回到浏览器。</p>
-<p>所以会有两个入口 entry_client,entry_serve,需要分开打两个包。<br>@todo 好像有个优化实现的代码写一写<br>1.todo 如何不是返回空的值<br>2.webpack 打包优化</p>
+<p>所以会有两个入口 entry_client,entry_serve,需要分开打两个包, 提供给首屏和后续使用。<br>优化策略：可以优化打包内容（例 webpack） 分包、按需加载等</p>
 <h5 id="浏览器解析"><a href="#浏览器解析" class="headerlink" title="浏览器解析"></a>浏览器解析</h5><p>大致流程： 解析 html(AST) domtree + 解析 css csstree = 解析完之后合并成 rendertree</p>
 <blockquote>
 <p>优化分为两个方面：</p>
@@ -405,7 +405,7 @@
 <li><p>静态文件优化</p>
 </li>
 <li>浏览器优化</li>
-<li>文件合并压缩（雅虎常规操作），大文件分片操作</li>
+<li>文件合并压缩（雅虎常规操作），<a href="https://juejin.cn/post/6844904055819468808" target="_blank" rel="noopener">大文件断点上传]</a></li>
 </ul>
 <ol start="2">
 <li>如何让代码执行的更少</li>
@@ -426,7 +426,7 @@
 <li>vite.snowpack 可以用浏览器自带编译, 免除打包的烦恼<br>额外：控制异步请求的并发数 谷歌设置的并发请求是 6 个。</li>
 </ul>
 <h3 id="优化前的页面质量检测"><a href="#优化前的页面质量检测" class="headerlink" title="优化前的页面质量检测"></a>优化前的页面质量检测</h3><ol>
-<li><p>lighthouse 生成页面质量报告</p>
+<li><p>lighthouse 生成检测页面质量报告</p>
 </li>
 <li><p>性能监控<br><a href="https://www.w3.org/TR/navigation-timing-2/" target="_blank" rel="noopener">navigation-timing</a><br><img src="/2020/12/14/性能优化宏观篇/performanceentry.png" alt=""></p>
 </li>
@@ -444,12 +444,17 @@
 <p>FMP 开始计算的几种解决方案</p>
 </blockquote>
 <ul>
-<li>固定好 dom 的 id,计算该 dom 高度变化的时间（mutationObserver 可以监听 DOM 的变化）</li>
+<li>固定好 dom 的 id,计算该 dom 高度变化的时间（<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MutationObserver" target="_blank" rel="noopener">mutationObserver</a> 可以监听 DOM 的变化）</li>
 <li>统计首屏 dom 的面积，计算占比面积</li>
 <li>使用第三方工具 lighthouse(生成页面质量报告) 使用谷歌自带的页面检测</li>
 <li>普通的开始统计节点，页面 TIT 之后再开始统计 FMP 耗时</li>
 </ul>
-<p>FMP 计算实战<br>????<br>npm compression 举例 node 去压缩 实际是服务器</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>开发中需要多思考几个内容，扩展优化的思维，比如：</p>
+<ol>
+<li>成功的命中率是多少</li>
+<li>超时的情况要怎么处理</li>
+<li>失败了会触发什么机制</li>
+</ol>
 
       
     </div>
@@ -619,7 +624,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化"><span class="nav-number">1.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#把输入网址-url-到页面展示的过程作为时间轴，去分析优化"><span class="nav-number">1.1.</span> <span class="nav-text">把输入网址 url 到页面展示的过程作为时间轴，去分析优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DNS"><span class="nav-number">1.1.1.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP"><span class="nav-number">1.1.2.</span> <span class="nav-text">TCP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP"><span class="nav-number">1.1.3.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应报文-SPA-SSR"><span class="nav-number">1.1.4.</span> <span class="nav-text">响应报文 SPA SSR</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#浏览器解析"><span class="nav-number">1.1.5.</span> <span class="nav-text">浏览器解析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化前的页面质量检测"><span class="nav-number">2.</span> <span class="nav-text">优化前的页面质量检测</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#优化"><span class="nav-number">1.</span> <span class="nav-text">优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#把输入网址-url-到页面展示的过程作为时间轴，去分析优化"><span class="nav-number">1.1.</span> <span class="nav-text">把输入网址 url 到页面展示的过程作为时间轴，去分析优化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DNS"><span class="nav-number">1.1.1.</span> <span class="nav-text">DNS</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#TCP"><span class="nav-number">1.1.2.</span> <span class="nav-text">TCP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#HTTP"><span class="nav-number">1.1.3.</span> <span class="nav-text">HTTP</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#响应报文-SPA-SSR"><span class="nav-number">1.1.4.</span> <span class="nav-text">响应报文 SPA SSR</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#浏览器解析"><span class="nav-number">1.1.5.</span> <span class="nav-text">浏览器解析</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化前的页面质量检测"><span class="nav-number">2.</span> <span class="nav-text">优化前的页面质量检测</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">2.1.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
             
 
           </div>
